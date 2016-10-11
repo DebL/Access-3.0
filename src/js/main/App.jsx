@@ -1,29 +1,29 @@
 /* Main React App Component */
 var React = require('react'),
-	Router = require('react-router'),
+    Router = require('react-router'),
     Reflux = require('reflux'),
     NavStore = require('NavStore'),
-	Mast = require('Mast'),
-	NavPane = require('NavPane');
+    Mast = require('Mast'),
+    NavPane = require('NavPane');
 
 module.exports = React.createClass({
 
-	displayName: 'App',
+    displayName: 'App',
 
     mixins: [
         Reflux.connect(NavStore, 'navSt')
     ],
 
-	render: function() {
-		const DEFAULT_ROUTE_LOGIN = "/";
+    render: function() {
+        const DEFAULT_ROUTE_LOGIN = "/";
         var navClass = this.state.navSt.navPaneFull ? 'navFull' : 'navSmall';
         navClass = this.props.location.pathname === DEFAULT_ROUTE_LOGIN ? '' : navClass;
 
-		return (
-			<div>
-				{this.props.location.pathname !== DEFAULT_ROUTE_LOGIN ? <Mast /> : null}
+        return (
+            <div>
+                {this.props.location.pathname !== DEFAULT_ROUTE_LOGIN ? <Mast /> : null}
 
-				{this.props.location.pathname !== DEFAULT_ROUTE_LOGIN ?
+                {this.props.location.pathname !== DEFAULT_ROUTE_LOGIN ?
                     <NavPane 
                         pageRoutes={this.props.routes}
                         pages={[
@@ -36,9 +36,9 @@ module.exports = React.createClass({
                 : null}
 
                 <div id="containerView" className={navClass}>
-				    {this.props.main}
+                    {this.props.main}
                 </div>
-			</div>
-		);
-	}
+            </div>
+        );
+    }
 });

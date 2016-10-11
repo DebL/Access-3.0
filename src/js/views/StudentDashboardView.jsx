@@ -10,6 +10,6 @@ module.exports = React.createClass({
             <div id="studentDashboardView">
                 {'STUDENT DASHBOARD'}
             </div>
-		);
+        );
 	}
 });

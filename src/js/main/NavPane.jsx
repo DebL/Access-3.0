@@ -8,7 +8,7 @@ var React = require('react'),
 
 module.exports = React.createClass({
 
-	displayName: 'NavPane',
+    displayName: 'NavPane',
 
     propTypes: {
         pages: PropTypes.array
@@ -18,12 +18,11 @@ module.exports = React.createClass({
         Reflux.connect(NavStore, 'navSt')
     ],
 
-	render: function() {
-        console.log(this.state.navSt.navPaneFull);
+    render: function() {
         var currentPage = '/' + this.props.pageRoutes[this.props.pageRoutes.length - 1].path;
 
-		return (
-			<div id="navPane">
+        return (
+            <div id="navPane">
                 {this.props.pages.map(function(page) {
                     var routeTo = page.route;
                     var isActiveClass = currentPage === routeTo ? 'activeView' : '';
@@ -40,6 +39,6 @@ module.exports = React.createClass({
                     );
                 }, this)}
             </div>
-		);
-	}
+        );
+    }
 });

@@ -1,75 +1,68 @@
-#containerView {
-    #loginView {
-        margin-left: 0px;
-        padding: 0px;
-    }
-}
-
 #loginView {
-	height: 100%;
-	width: 100%;
-	background-color: $mainDarkGray;
+    height: 100%;
+    width: 100%;
+    background-color: $mainDarkGray;
 
-	#companyHeader {
-		text-align: center;
-		padding-top: 100px;
-		font-size: 45px;
-	}
+    #companyHeader {
+        text-align: center;
+        padding-top: 100px;
+        font-size: 45px;
+    }
 
-	#loginForm {
-		margin-top: 30px;
-		width: 375px;
-		margin-left: auto;
-		margin-right: auto;
+    #loginForm {
+        margin-top: 30px;
+        width: 375px;
+        margin-left: auto;
+        margin-right: auto;
 
-		#loginTabs {
-			.nav-tabs > li {
-				width: 50%;
-				border-width: 0px;
-				background-color: $accentGray;
-				text-align: center;
+        #loginTabs {
+            .nav-tabs > li {
+                width: 50%;
+                border-width: 0px;
+                background-color: $accentGray;
+                text-align: center;
 
-				&:first-child {
-					border-top-left-radius: 3.0px;
-				}
+                &:first-child {
+                    border-top-left-radius: 3.0px;
+                }
 
-				&:last-child {
-					border-top-right-radius: 3.0px;
-				}
+                &:last-child {
+                    border-top-right-radius: 3.0px;
+                }
 
-				a {
-					color: $mainDarkGray;
-					font-weight: bold;
-				}
-			}
+                a {
+                    color: $mainDarkGray;
+                    font-weight: bold;
+                }
+            }
 
-			.nav-tabs > li:first-child > a {
-				border-top-right-radius: 0px;
-			}
+            .nav-tabs > li:first-child > a {
+                border-top-right-radius: 0px;
+            }
 
-			.nav-tabs > li:last-child > a {
-				border-top-left-radius: 0px;
-				margin-right: 0px;
-			}
+            .nav-tabs > li:last-child > a {
+                border-top-left-radius: 0px;
+                margin-right: 0px;
+            }
 
-			.nav-tabs > li.active > a {
-				background-color: white;
-			}
-		}
+            .nav-tabs > li.active > a {
+                background-color: white;
+            }
+        }
 
-		.loginFormContent, .signupFormContent {
-			padding: 30px;
+        .loginFormContent, .signupFormContent {
+            padding: 30px;
 
-			.btn-info {
-				width: 100%;
-				background-color: $accentDarkGreen;
-				border-color: $accentDarkGreen;
-			}
-		}
+            .btn-info {
+                width: 100%;
+                background-color: $accentDarkGreen;
+                border-color: $accentDarkGreen;
+            }
+        }
 
-		.fa-lock {
-			padding-left: 3px;
-			padding-right: 3px;
-		}
-	}
+        .fa-lock {
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+    }
 }

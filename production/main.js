@@ -97,7 +97,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Global CSS Variables */\n/* Global css Styles */\nbody {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n  font-family: Century Gothic, sans-serif;\n}\n\n/* generic tile */\n.tile {\n  background-color: white;\n  border-radius: 3.0px;\n  box-shadow: 0px 0px 10px #2b2b2b;\n}\n\n/* company header */\n.headerBold {\n  color: white;\n  padding-right: 10px;\n}\n\n.headerLight {\n  font-weight: 100;\n  color: #b4e1c0;\n}\n\n/* view content based on nav pane width */\n#containerView.navFull {\n  margin-left: 210px;\n  padding: 20px;\n}\n\n#containerView.navSmall {\n  margin-left: 80px;\n  padding: 20px;\n}\n\n/* Import specific css files */\n#containerView #loginView {\n  margin-left: 0px;\n  padding: 0px;\n}\n\n#loginView {\n  height: 100%;\n  width: 100%;\n  background-color: #494e51;\n}\n\n#loginView #companyHeader {\n  text-align: center;\n  padding-top: 100px;\n  font-size: 45px;\n}\n\n#loginView #loginForm {\n  margin-top: 30px;\n  width: 375px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li {\n  width: 50%;\n  border-width: 0px;\n  background-color: #d8d8d8;\n  text-align: center;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child {\n  border-top-left-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child {\n  border-top-right-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li a {\n  color: #494e51;\n  font-weight: bold;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child > a {\n  border-top-right-radius: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child > a {\n  border-top-left-radius: 0px;\n  margin-right: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li.active > a {\n  background-color: white;\n}\n\n#loginView #loginForm .loginFormContent, #loginView #loginForm .signupFormContent {\n  padding: 30px;\n}\n\n#loginView #loginForm .loginFormContent .btn-info, #loginView #loginForm .signupFormContent .btn-info {\n  width: 100%;\n  background-color: #55a4a4;\n  border-color: #55a4a4;\n}\n\n#loginView #loginForm .fa-lock {\n  padding-left: 3px;\n  padding-right: 3px;\n}\n\n#mast {\n  height: 60px;\n  width: 100%;\n  background-color: #3a3d3f;\n  padding: 12px;\n  box-shadow: 0px 0px 5px black;\n  display: inline-flex;\n  justify-content: space-between;\n}\n\n#mast .menuIcon {\n  color: #d8d8d8;\n  font-size: 26px;\n  padding-right: 15px;\n}\n\n#mast .mastHeader {\n  font-size: 25px;\n}\n\n#mast .mastUserName {\n  color: white;\n  font-size: 20px;\n}\n\n#mast .userNameIcon {\n  padding-left: 10px;\n  color: #d8d8d8;\n  font-size: 24px;\n}\n\n#navPane {\n  background-color: #494e51;\n  height: 100%;\n  position: absolute;\n  padding-top: 100px;\n  box-shadow: 0px 2px 3px black;\n}\n\n#navPane .navePaneItem {\n  padding-left: 20px;\n  padding-right: 20px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n  margin-bottom: 15px;\n}\n\n#navPane .navePaneItem a {\n  color: white;\n  text-decoration: none;\n}\n\n#navPane .navePaneItem.activeView {\n  border-left: 5px solid #b4e1c0;\n  background-color: #3a3d3f;\n}\n\n#navPane .navePaneItem.activeView a {\n  color: #b4e1c0;\n}\n\n#navPane .navePaneItem .navPaneIcon {\n  padding-right: 15px;\n}\n", ""]);
+	exports.push([module.id, "/* Global CSS Variables */\n/* Global css Styles */\nbody {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n  font-family: Century Gothic, sans-serif;\n}\n\n/* generic tile */\n.tile {\n  background-color: white;\n  border-radius: 3.0px;\n  box-shadow: 0px 0px 10px #2b2b2b;\n}\n\n/* company header */\n.headerBold {\n  color: white;\n  padding-right: 10px;\n}\n\n.headerLight {\n  font-weight: 100;\n  color: #b4e1c0;\n}\n\n/* view content based on nav pane width */\n#containerView.navFull {\n  margin-left: 210px;\n  padding: 20px;\n}\n\n#containerView.navSmall {\n  margin-left: 80px;\n  padding: 20px;\n}\n\n/* Import specific css files */\n#loginView {\n  height: 100%;\n  width: 100%;\n  background-color: #494e51;\n}\n\n#loginView #companyHeader {\n  text-align: center;\n  padding-top: 100px;\n  font-size: 45px;\n}\n\n#loginView #loginForm {\n  margin-top: 30px;\n  width: 375px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li {\n  width: 50%;\n  border-width: 0px;\n  background-color: #d8d8d8;\n  text-align: center;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child {\n  border-top-left-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child {\n  border-top-right-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li a {\n  color: #494e51;\n  font-weight: bold;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child > a {\n  border-top-right-radius: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child > a {\n  border-top-left-radius: 0px;\n  margin-right: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li.active > a {\n  background-color: white;\n}\n\n#loginView #loginForm .loginFormContent, #loginView #loginForm .signupFormContent {\n  padding: 30px;\n}\n\n#loginView #loginForm .loginFormContent .btn-info, #loginView #loginForm .signupFormContent .btn-info {\n  width: 100%;\n  background-color: #55a4a4;\n  border-color: #55a4a4;\n}\n\n#loginView #loginForm .fa-lock {\n  padding-left: 3px;\n  padding-right: 3px;\n}\n\n#mast {\n  height: 60px;\n  width: 100%;\n  background-color: #3a3d3f;\n  padding: 12px;\n  box-shadow: 0px 0px 5px black;\n  display: inline-flex;\n  justify-content: space-between;\n}\n\n#mast .menuIcon {\n  color: #d8d8d8;\n  font-size: 26px;\n  padding-right: 15px;\n}\n\n#mast .mastHeader {\n  font-size: 25px;\n}\n\n#mast .mastUserName {\n  color: white;\n  font-size: 20px;\n}\n\n#mast .userNameIcon {\n  padding-left: 10px;\n  color: #d8d8d8;\n  font-size: 24px;\n}\n\n#navPane {\n  background-color: #494e51;\n  height: 100%;\n  position: absolute;\n  padding-top: 100px;\n  box-shadow: 0px 2px 3px black;\n}\n\n#navPane .navePaneItem {\n  padding-left: 20px;\n  padding-right: 20px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n  margin-bottom: 15px;\n}\n\n#navPane .navePaneItem a {\n  color: white;\n  text-decoration: none;\n}\n\n#navPane .navePaneItem.activeView {\n  border-left: 5px solid #b4e1c0;\n  background-color: #3a3d3f;\n}\n\n#navPane .navePaneItem.activeView a {\n  color: #b4e1c0;\n}\n\n#navPane .navePaneItem .navPaneIcon {\n  padding-right: 15px;\n}\n", ""]);
 
 	// exports
 
@@ -429,18 +429,18 @@
 	    App = React.createFactory(__webpack_require__(359));
 
 	ReactDom.render(React.createElement(
-		Router,
-		{ history: HashHistory },
-		React.createElement(
-			Route,
-			{ path: '/', component: App },
-			React.createElement(IndexRoute, { components: { main: LoginView } }),
-			React.createElement(Route, { path: 'login', components: { main: LoginView } }),
-			React.createElement(Route, { path: 'studentDashboard', components: { main: StudentDashboardView } }),
-			React.createElement(Route, { path: 'studentLessonPlans', components: { main: StudentLessonPlansView } }),
-			React.createElement(Route, { path: 'studentHomework', components: { main: StudentHomeworkView } }),
-			React.createElement(Route, { path: 'studentCalendar', components: { main: StudentCalendarView } })
-		)
+	    Router,
+	    { history: HashHistory },
+	    React.createElement(
+	        Route,
+	        { path: '/', component: App },
+	        React.createElement(IndexRoute, { components: { main: LoginView } }),
+	        React.createElement(Route, { path: 'login', components: { main: LoginView } }),
+	        React.createElement(Route, { path: 'studentDashboard', components: { main: StudentDashboardView } }),
+	        React.createElement(Route, { path: 'studentLessonPlans', components: { main: StudentLessonPlansView } }),
+	        React.createElement(Route, { path: 'studentHomework', components: { main: StudentHomeworkView } }),
+	        React.createElement(Route, { path: 'studentCalendar', components: { main: StudentCalendarView } })
+	    )
 	), document.getElementById('appContent'));
 
 /***/ },
@@ -27412,186 +27412,186 @@
 	/* Component to display the login form content */
 	var LoginContent = React.createClass({
 
-		displayName: 'LoginContent',
+	    displayName: 'LoginContent',
 
-		propTypes: {
-			history: PropTypes.object
-		},
+	    propTypes: {
+	        history: PropTypes.object
+	    },
 
-		userLogin: function () {
-			// TODO: check login credentials before logining user
-			// in and taking them to the dashboard page
-			this.props.history.push('/studentDashboard');
-		},
+	    userLogin: function () {
+	        // TODO: check login credentials before logining user
+	        // in and taking them to the dashboard page
+	        this.props.history.push('/studentDashboard');
+	    },
 
-		render: function () {
-			return React.createElement(
-				'div',
-				{ className: 'loginFormContent' },
-				React.createElement(
-					'form',
-					null,
-					React.createElement(
-						FormGroup,
-						null,
-						React.createElement(
-							InputGroup,
-							null,
-							React.createElement(FormControl, { type: 'text', placeholder: 'EMAIL' }),
-							React.createElement(
-								InputGroup.Addon,
-								null,
-								React.createElement(FaIcon.Icon, { name: 'envelope' })
-							)
-						)
-					),
-					React.createElement(
-						FormGroup,
-						null,
-						React.createElement(
-							InputGroup,
-							null,
-							React.createElement(FormControl, { type: 'text', placeholder: 'PASSWORD' }),
-							React.createElement(
-								InputGroup.Addon,
-								null,
-								React.createElement(FaIcon.Icon, { name: 'lock' })
-							)
-						)
-					),
-					React.createElement(
-						Button,
-						{ bsStyle: 'info', onClick: this.userLogin },
-						'LOGIN'
-					)
-				)
-			);
-		}
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'loginFormContent' },
+	            React.createElement(
+	                'form',
+	                null,
+	                React.createElement(
+	                    FormGroup,
+	                    null,
+	                    React.createElement(
+	                        InputGroup,
+	                        null,
+	                        React.createElement(FormControl, { type: 'text', placeholder: 'EMAIL' }),
+	                        React.createElement(
+	                            InputGroup.Addon,
+	                            null,
+	                            React.createElement(FaIcon.Icon, { name: 'envelope' })
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    FormGroup,
+	                    null,
+	                    React.createElement(
+	                        InputGroup,
+	                        null,
+	                        React.createElement(FormControl, { type: 'text', placeholder: 'PASSWORD' }),
+	                        React.createElement(
+	                            InputGroup.Addon,
+	                            null,
+	                            React.createElement(FaIcon.Icon, { name: 'lock' })
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    Button,
+	                    { bsStyle: 'info', onClick: this.userLogin },
+	                    'LOGIN'
+	                )
+	            )
+	        );
+	    }
 	});
 
 	/* Components to display the sign up form content */
 	var SignUpContent = React.createClass({
 
-		displayName: 'SignUpContent',
+	    displayName: 'SignUpContent',
 
-		render: function () {
-			return React.createElement(
-				'div',
-				{ className: 'signupFormContent' },
-				React.createElement(
-					'form',
-					null,
-					React.createElement(
-						FormGroup,
-						null,
-						React.createElement(
-							InputGroup,
-							null,
-							React.createElement(FormControl, { type: 'text', placeholder: 'EMAIL' }),
-							React.createElement(InputGroup.Addon, null)
-						)
-					),
-					React.createElement(
-						FormGroup,
-						null,
-						React.createElement(
-							InputGroup,
-							null,
-							React.createElement(FormControl, { type: 'text', placeholder: 'PASSWORD' }),
-							React.createElement(InputGroup.Addon, null)
-						)
-					),
-					React.createElement(
-						FormGroup,
-						null,
-						React.createElement(
-							InputGroup,
-							null,
-							React.createElement(FormControl, { type: 'text', placeholder: 'RE-ENTER PASSWORD' }),
-							React.createElement(InputGroup.Addon, null)
-						)
-					),
-					React.createElement(
-						FormGroup,
-						null,
-						React.createElement(
-							InputGroup,
-							null,
-							React.createElement(FormControl, { type: 'text', placeholder: 'X2DF87GR' }),
-							React.createElement(InputGroup.Addon, null)
-						)
-					),
-					React.createElement(
-						Button,
-						{ bsStyle: 'info' },
-						'SIGN UP'
-					)
-				)
-			);
-		}
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'signupFormContent' },
+	            React.createElement(
+	                'form',
+	                null,
+	                React.createElement(
+	                    FormGroup,
+	                    null,
+	                    React.createElement(
+	                        InputGroup,
+	                        null,
+	                        React.createElement(FormControl, { type: 'text', placeholder: 'EMAIL' }),
+	                        React.createElement(InputGroup.Addon, null)
+	                    )
+	                ),
+	                React.createElement(
+	                    FormGroup,
+	                    null,
+	                    React.createElement(
+	                        InputGroup,
+	                        null,
+	                        React.createElement(FormControl, { type: 'text', placeholder: 'PASSWORD' }),
+	                        React.createElement(InputGroup.Addon, null)
+	                    )
+	                ),
+	                React.createElement(
+	                    FormGroup,
+	                    null,
+	                    React.createElement(
+	                        InputGroup,
+	                        null,
+	                        React.createElement(FormControl, { type: 'text', placeholder: 'RE-ENTER PASSWORD' }),
+	                        React.createElement(InputGroup.Addon, null)
+	                    )
+	                ),
+	                React.createElement(
+	                    FormGroup,
+	                    null,
+	                    React.createElement(
+	                        InputGroup,
+	                        null,
+	                        React.createElement(FormControl, { type: 'text', placeholder: 'X2DF87GR' }),
+	                        React.createElement(InputGroup.Addon, null)
+	                    )
+	                ),
+	                React.createElement(
+	                    Button,
+	                    { bsStyle: 'info' },
+	                    'SIGN UP'
+	                )
+	            )
+	        );
+	    }
 	});
 
 	/* Component wrapper for the form content */
 	var LoginForm = React.createClass({
 
-		displayName: 'LoginForm',
+	    displayName: 'LoginForm',
 
-		propTypes: {
-			history: PropTypes.object
-		},
+	    propTypes: {
+	        history: PropTypes.object
+	    },
 
-		render: function () {
-			return React.createElement(
-				'div',
-				{ id: 'loginForm' },
-				React.createElement(
-					'div',
-					{ className: 'tile' },
-					React.createElement(
-						Tabs,
-						{ defaultActiveKey: 1, id: 'loginTabs' },
-						React.createElement(
-							Tab,
-							{ eventKey: 1, title: 'LOGIN' },
-							React.createElement(LoginContent, { history: this.props.history })
-						),
-						React.createElement(
-							Tab,
-							{ eventKey: 2, title: 'SIGN UP' },
-							React.createElement(SignUpContent, null)
-						)
-					)
-				)
-			);
-		}
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { id: 'loginForm' },
+	            React.createElement(
+	                'div',
+	                { className: 'tile' },
+	                React.createElement(
+	                    Tabs,
+	                    { defaultActiveKey: 1, id: 'loginTabs' },
+	                    React.createElement(
+	                        Tab,
+	                        { eventKey: 1, title: 'LOGIN' },
+	                        React.createElement(LoginContent, { history: this.props.history })
+	                    ),
+	                    React.createElement(
+	                        Tab,
+	                        { eventKey: 2, title: 'SIGN UP' },
+	                        React.createElement(SignUpContent, null)
+	                    )
+	                )
+	            )
+	        );
+	    }
 	});
 
 	/* Main page content */
 	module.exports = React.createClass({
 
-		displayName: 'LoginView',
+	    displayName: 'LoginView',
 
-		render: function () {
-			return React.createElement(
-				'div',
-				{ id: 'loginView' },
-				React.createElement(
-					'div',
-					{ id: 'companyHeader' },
-					React.createElement(
-						'span',
-						{ className: 'headerBold' },
-						'ACCESS'
-					),
-					React.createElement(
-						'span',
-						{ className: 'headerLight' },
-						'3.0'
-					)
-				),
-				React.createElement(LoginForm, { history: this.props.history })
-			);
-		}
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { id: 'loginView' },
+	            React.createElement(
+	                'div',
+	                { id: 'companyHeader' },
+	                React.createElement(
+	                    'span',
+	                    { className: 'headerBold' },
+	                    'ACCESS'
+	                ),
+	                React.createElement(
+	                    'span',
+	                    { className: 'headerLight' },
+	                    '3.0'
+	                )
+	            ),
+	            React.createElement(LoginForm, { history: this.props.history })
+	        );
+	    }
 	});
 
 /***/ },
@@ -33375,15 +33375,15 @@
 	/* Main page content */
 	module.exports = React.createClass({
 
-		displayName: 'StudentDashboardView',
+	    displayName: 'StudentDashboardView',
 
-		render: function () {
-			return React.createElement(
-				'div',
-				{ id: 'studentDashboardView' },
-				'STUDENT DASHBOARD'
-			);
-		}
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { id: 'studentDashboardView' },
+	            'STUDENT DASHBOARD'
+	        );
+	    }
 	});
 
 /***/ },
@@ -33395,15 +33395,15 @@
 	/* Main page content */
 	module.exports = React.createClass({
 
-		displayName: 'StudentLessPlansView',
+	    displayName: 'StudentLessPlansView',
 
-		render: function () {
-			return React.createElement(
-				'div',
-				{ id: 'studentDashboardView' },
-				'STUDENT LESSON PLANS'
-			);
-		}
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { id: 'studentDashboardView' },
+	            'STUDENT LESSON PLANS'
+	        );
+	    }
 	});
 
 /***/ },
@@ -33415,15 +33415,15 @@
 	/* Main page content */
 	module.exports = React.createClass({
 
-		displayName: 'StudentHomeworkView',
+	    displayName: 'StudentHomeworkView',
 
-		render: function () {
-			return React.createElement(
-				'div',
-				{ id: 'studentDashboardView' },
-				'STUDENT HOMEWORK'
-			);
-		}
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { id: 'studentDashboardView' },
+	            'STUDENT HOMEWORK'
+	        );
+	    }
 	});
 
 /***/ },
@@ -33435,15 +33435,15 @@
 	/* Main page content */
 	module.exports = React.createClass({
 
-		displayName: 'StudentCalendarView',
+	    displayName: 'StudentCalendarView',
 
-		render: function () {
-			return React.createElement(
-				'div',
-				{ id: 'studentDashboardView' },
-				'STUDENT CALENDAR'
-			);
-		}
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { id: 'studentDashboardView' },
+	            'STUDENT CALENDAR'
+	        );
+	    }
 	});
 
 /***/ },
@@ -33460,30 +33460,30 @@
 
 	module.exports = React.createClass({
 
-	  displayName: 'App',
+	    displayName: 'App',
 
-	  mixins: [Reflux.connect(NavStore, 'navSt')],
+	    mixins: [Reflux.connect(NavStore, 'navSt')],
 
-	  render: function () {
-	    const DEFAULT_ROUTE_LOGIN = "/";
-	    var navClass = this.state.navSt.navPaneFull ? 'navFull' : 'navSmall';
-	    navClass = this.props.location.pathname === DEFAULT_ROUTE_LOGIN ? '' : navClass;
+	    render: function () {
+	        const DEFAULT_ROUTE_LOGIN = "/";
+	        var navClass = this.state.navSt.navPaneFull ? 'navFull' : 'navSmall';
+	        navClass = this.props.location.pathname === DEFAULT_ROUTE_LOGIN ? '' : navClass;
 
-	    return React.createElement(
-	      'div',
-	      null,
-	      this.props.location.pathname !== DEFAULT_ROUTE_LOGIN ? React.createElement(Mast, null) : null,
-	      this.props.location.pathname !== DEFAULT_ROUTE_LOGIN ? React.createElement(NavPane, {
-	        pageRoutes: this.props.routes,
-	        pages: [{ title: 'HOME', route: '/studentDashboard', icon: 'home' }, { title: 'LESSON PLANS', route: '/studentLessonPlans', icon: 'file' }, { title: 'HOMEWORK', route: '/studentHomework', icon: 'pencil' }, { title: 'CALENDAR', route: '/studentCalendar', icon: 'calendar-o' }]
-	      }) : null,
-	      React.createElement(
-	        'div',
-	        { id: 'containerView', className: navClass },
-	        this.props.main
-	      )
-	    );
-	  }
+	        return React.createElement(
+	            'div',
+	            null,
+	            this.props.location.pathname !== DEFAULT_ROUTE_LOGIN ? React.createElement(Mast, null) : null,
+	            this.props.location.pathname !== DEFAULT_ROUTE_LOGIN ? React.createElement(NavPane, {
+	                pageRoutes: this.props.routes,
+	                pages: [{ title: 'HOME', route: '/studentDashboard', icon: 'home' }, { title: 'LESSON PLANS', route: '/studentLessonPlans', icon: 'file' }, { title: 'HOMEWORK', route: '/studentHomework', icon: 'pencil' }, { title: 'CALENDAR', route: '/studentCalendar', icon: 'calendar-o' }]
+	            }) : null,
+	            React.createElement(
+	                'div',
+	                { id: 'containerView', className: navClass },
+	                this.props.main
+	            )
+	        );
+	    }
 	});
 
 /***/ },
@@ -34959,51 +34959,51 @@
 
 	module.exports = React.createClass({
 
-	  displayName: 'Mast',
+	    displayName: 'Mast',
 
-	  toggleNavPane: function () {
-	    NavActions.toggleNavPane();
-	  },
+	    toggleNavPane: function () {
+	        NavActions.toggleNavPane();
+	    },
 
-	  render: function () {
-	    return React.createElement(
-	      'div',
-	      { id: 'mast' },
-	      React.createElement(
-	        'span',
-	        null,
-	        React.createElement(
-	          'span',
-	          null,
-	          React.createElement(FaIcon.Icon, { className: 'menuIcon', name: 'bars', onClick: this.toggleNavPane })
-	        ),
-	        React.createElement(
-	          'span',
-	          { className: 'mastHeader headerBold' },
-	          'ACCESS'
-	        ),
-	        React.createElement(
-	          'span',
-	          { className: 'mastHeader headerLight' },
-	          '3.0'
-	        )
-	      ),
-	      React.createElement(
-	        'span',
-	        null,
-	        React.createElement(
-	          'span',
-	          { className: 'mastUserName' },
-	          'USER NAME'
-	        ),
-	        React.createElement(
-	          'span',
-	          { className: 'userNameIcon' },
-	          React.createElement(FaIcon.Icon, { name: 'chevron-down' })
-	        )
-	      )
-	    );
-	  }
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { id: 'mast' },
+	            React.createElement(
+	                'span',
+	                null,
+	                React.createElement(
+	                    'span',
+	                    null,
+	                    React.createElement(FaIcon.Icon, { className: 'menuIcon', name: 'bars', onClick: this.toggleNavPane })
+	                ),
+	                React.createElement(
+	                    'span',
+	                    { className: 'mastHeader headerBold' },
+	                    'ACCESS'
+	                ),
+	                React.createElement(
+	                    'span',
+	                    { className: 'mastHeader headerLight' },
+	                    '3.0'
+	                )
+	            ),
+	            React.createElement(
+	                'span',
+	                null,
+	                React.createElement(
+	                    'span',
+	                    { className: 'mastUserName' },
+	                    'USER NAME'
+	                ),
+	                React.createElement(
+	                    'span',
+	                    { className: 'userNameIcon' },
+	                    React.createElement(FaIcon.Icon, { name: 'chevron-down' })
+	                )
+	            )
+	        );
+	    }
 	});
 
 /***/ },
@@ -35029,7 +35029,6 @@
 	    mixins: [Reflux.connect(NavStore, 'navSt')],
 
 	    render: function () {
-	        console.log(this.state.navSt.navPaneFull);
 	        var currentPage = '/' + this.props.pageRoutes[this.props.pageRoutes.length - 1].path;
 
 	        return React.createElement(
