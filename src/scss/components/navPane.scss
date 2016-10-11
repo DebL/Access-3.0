@@ -1,0 +1,33 @@
+#navPane {
+    background-color: $mainDarkGray;
+    height: 100%;
+    position: absolute;
+    padding-top: 100px;
+
+    .navePaneItem {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        &.activeView {
+            border-left: 5px solid $accentLightGreen;
+            background-color: $mastDarkGray;
+            a {
+                color: $accentLightGreen;
+            }
+        }
+
+        font-size: 18px;
+        margin-bottom: 15px;
+
+        .navPaneIcon {
+            padding-right: 15px;
+        }
+    }
+}

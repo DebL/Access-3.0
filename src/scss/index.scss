@@ -1,0 +1,52 @@
+/* Global CSS Variables */
+
+$mastDarkGray: #3a3d3f;
+$mainDarkGray: #494e51;
+$accentGray: #d8d8d8;
+$accentDarkGreen: #55a4a4;
+$accentLightGreen: #b4e1c0;
+
+/* Global css Styles */
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: Century Gothic, sans-serif;
+}
+
+/* generic tile */
+.tile {
+	background-color: white;
+	border-radius: 3.0px;
+	box-shadow: 0px 0px 10px #2b2b2b;
+}
+
+/* company header */
+.headerBold {
+	color: white;
+	padding-right: 10px;
+}
+
+.headerLight {
+	font-weight: 100;
+	color: $accentLightGreen;
+}
+
+/* view content based on nav pane width */
+#containerView {
+    &.navFull {
+        margin-left: 210px;
+        padding: 20px;
+    }
+
+    &.navSmall {
+        margin-left: 80px;
+        padding: 20px;
+    }
+}
+
+/* Import specific css files */
+@import 'views/loginView.scss';
+@import 'components/mast.scss';
+@import 'components/navPane.scss';
