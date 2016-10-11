@@ -7,6 +7,9 @@ var React = require('react'),
 	HashHistory = ReactRouter.hashHistory,
 	LoginView = require('LoginView'),
 	StudentDashboardView = require('StudentDashboardView'),
+	StudentLessonPlansView = require('StudentLessonPlansView'),
+	StudentHomeworkView = require('StudentHomeworkView'),
+	StudentCalendarView = require('StudentCalendarView'),
 	
 	App = React.createFactory(require('App'));
 
@@ -16,6 +19,9 @@ ReactDom.render((
 			<IndexRoute components={{ main: LoginView }} />
 			<Route path="login" components={{ main: LoginView }} />
 			<Route path="studentDashboard" components={{ main: StudentDashboardView }} />
+			<Route path="studentLessonPlans" components={{ main: StudentLessonPlansView }} />
+			<Route path="studentHomework" components={{ main: StudentHomeworkView }} />
+			<Route path="studentCalendar" components={{ main: StudentCalendarView }} />
 		</Route>
 	</Router>
 ), document.getElementById('appContent'));

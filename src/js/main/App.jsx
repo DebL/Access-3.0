@@ -28,9 +28,9 @@ module.exports = React.createClass({
                         pageRoutes={this.props.routes}
                         pages={[
                             {title: 'HOME', route: '/studentDashboard', icon: 'home'},
-                            {title: 'LESSON PLANS', route: '', icon: 'file'},
-                            {title: 'HOMEWORK', route: '', icon: 'pencil'},
-                            {title: 'CALENDAR', route: '', icon: 'calendar-o'},
+                            {title: 'LESSON PLANS', route: '/studentLessonPlans', icon: 'file'},
+                            {title: 'HOMEWORK', route: '/studentHomework', icon: 'pencil'},
+                            {title: 'CALENDAR', route: '/studentCalendar', icon: 'calendar-o'},
                         ]}
                     />
                 : null}

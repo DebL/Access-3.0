@@ -3,13 +3,13 @@ var React = require('react');
 /* Main page content */
 module.exports = React.createClass({
 
-    displayName: 'StudentDashboardView',
+    displayName: 'StudentLessPlansView',
 
     render: function() {
         return (
             <div id="studentDashboardView">
-                {'STUDENT DASHBOARD'}
+                {'STUDENT LESSON PLANS'}
             </div>
-		);
-	}
+        );
+    }
 });

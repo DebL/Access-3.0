@@ -97,7 +97,7 @@
 
 
 	// module
-	exports.push([module.id, "/* Global CSS Variables */\n/* Global css Styles */\nbody {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n  font-family: Century Gothic, sans-serif;\n}\n\n/* generic tile */\n.tile {\n  background-color: white;\n  border-radius: 3.0px;\n  box-shadow: 0px 0px 10px #2b2b2b;\n}\n\n/* company header */\n.headerBold {\n  color: white;\n  padding-right: 10px;\n}\n\n.headerLight {\n  font-weight: 100;\n  color: #b4e1c0;\n}\n\n/* view content based on nav pane width */\n#containerView.navFull {\n  margin-left: 210px;\n  padding: 20px;\n}\n\n#containerView.navSmall {\n  margin-left: 80px;\n  padding: 20px;\n}\n\n/* Import specific css files */\n#containerView #loginView {\n  margin-left: 0px;\n  padding: 0px;\n}\n\n#loginView {\n  height: 100%;\n  width: 100%;\n  background-color: #494e51;\n}\n\n#loginView #companyHeader {\n  text-align: center;\n  padding-top: 100px;\n  font-size: 45px;\n}\n\n#loginView #loginForm {\n  margin-top: 30px;\n  width: 375px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li {\n  width: 50%;\n  border-width: 0px;\n  background-color: #d8d8d8;\n  text-align: center;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child {\n  border-top-left-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child {\n  border-top-right-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li a {\n  color: #494e51;\n  font-weight: bold;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child > a {\n  border-top-right-radius: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child > a {\n  border-top-left-radius: 0px;\n  margin-right: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li.active > a {\n  background-color: white;\n}\n\n#loginView #loginForm .loginFormContent, #loginView #loginForm .signupFormContent {\n  padding: 30px;\n}\n\n#loginView #loginForm .loginFormContent .btn-info, #loginView #loginForm .signupFormContent .btn-info {\n  width: 100%;\n  background-color: #55a4a4;\n  border-color: #55a4a4;\n}\n\n#loginView #loginForm .fa-lock {\n  padding-left: 3px;\n  padding-right: 3px;\n}\n\n#mast {\n  height: 60px;\n  width: 100%;\n  background-color: #3a3d3f;\n  padding: 12px;\n  display: inline-flex;\n  justify-content: space-between;\n}\n\n#mast .menuIcon {\n  color: #d8d8d8;\n  font-size: 26px;\n  padding-right: 15px;\n}\n\n#mast .mastHeader {\n  font-size: 25px;\n}\n\n#mast .mastUserName {\n  color: white;\n  font-size: 20px;\n}\n\n#mast .userNameIcon {\n  padding-left: 10px;\n  color: #d8d8d8;\n  font-size: 24px;\n}\n\n#navPane {\n  background-color: #494e51;\n  height: 100%;\n  position: absolute;\n  padding-top: 100px;\n}\n\n#navPane .navePaneItem {\n  padding-left: 20px;\n  padding-right: 20px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n  margin-bottom: 15px;\n}\n\n#navPane .navePaneItem a {\n  color: white;\n  text-decoration: none;\n}\n\n#navPane .navePaneItem.activeView {\n  border-left: 5px solid #b4e1c0;\n  background-color: #3a3d3f;\n}\n\n#navPane .navePaneItem.activeView a {\n  color: #b4e1c0;\n}\n\n#navPane .navePaneItem .navPaneIcon {\n  padding-right: 15px;\n}\n", ""]);
+	exports.push([module.id, "/* Global CSS Variables */\n/* Global css Styles */\nbody {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n  font-family: Century Gothic, sans-serif;\n}\n\n/* generic tile */\n.tile {\n  background-color: white;\n  border-radius: 3.0px;\n  box-shadow: 0px 0px 10px #2b2b2b;\n}\n\n/* company header */\n.headerBold {\n  color: white;\n  padding-right: 10px;\n}\n\n.headerLight {\n  font-weight: 100;\n  color: #b4e1c0;\n}\n\n/* view content based on nav pane width */\n#containerView.navFull {\n  margin-left: 210px;\n  padding: 20px;\n}\n\n#containerView.navSmall {\n  margin-left: 80px;\n  padding: 20px;\n}\n\n/* Import specific css files */\n#containerView #loginView {\n  margin-left: 0px;\n  padding: 0px;\n}\n\n#loginView {\n  height: 100%;\n  width: 100%;\n  background-color: #494e51;\n}\n\n#loginView #companyHeader {\n  text-align: center;\n  padding-top: 100px;\n  font-size: 45px;\n}\n\n#loginView #loginForm {\n  margin-top: 30px;\n  width: 375px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li {\n  width: 50%;\n  border-width: 0px;\n  background-color: #d8d8d8;\n  text-align: center;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child {\n  border-top-left-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child {\n  border-top-right-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li a {\n  color: #494e51;\n  font-weight: bold;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child > a {\n  border-top-right-radius: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child > a {\n  border-top-left-radius: 0px;\n  margin-right: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li.active > a {\n  background-color: white;\n}\n\n#loginView #loginForm .loginFormContent, #loginView #loginForm .signupFormContent {\n  padding: 30px;\n}\n\n#loginView #loginForm .loginFormContent .btn-info, #loginView #loginForm .signupFormContent .btn-info {\n  width: 100%;\n  background-color: #55a4a4;\n  border-color: #55a4a4;\n}\n\n#loginView #loginForm .fa-lock {\n  padding-left: 3px;\n  padding-right: 3px;\n}\n\n#mast {\n  height: 60px;\n  width: 100%;\n  background-color: #3a3d3f;\n  padding: 12px;\n  box-shadow: 0px 0px 5px black;\n  display: inline-flex;\n  justify-content: space-between;\n}\n\n#mast .menuIcon {\n  color: #d8d8d8;\n  font-size: 26px;\n  padding-right: 15px;\n}\n\n#mast .mastHeader {\n  font-size: 25px;\n}\n\n#mast .mastUserName {\n  color: white;\n  font-size: 20px;\n}\n\n#mast .userNameIcon {\n  padding-left: 10px;\n  color: #d8d8d8;\n  font-size: 24px;\n}\n\n#navPane {\n  background-color: #494e51;\n  height: 100%;\n  position: absolute;\n  padding-top: 100px;\n  box-shadow: 0px 2px 3px black;\n}\n\n#navPane .navePaneItem {\n  padding-left: 20px;\n  padding-right: 20px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n  margin-bottom: 15px;\n}\n\n#navPane .navePaneItem a {\n  color: white;\n  text-decoration: none;\n}\n\n#navPane .navePaneItem.activeView {\n  border-left: 5px solid #b4e1c0;\n  background-color: #3a3d3f;\n}\n\n#navPane .navePaneItem.activeView a {\n  color: #b4e1c0;\n}\n\n#navPane .navePaneItem .navPaneIcon {\n  padding-right: 15px;\n}\n", ""]);
 
 	// exports
 
@@ -423,7 +423,10 @@
 	    HashHistory = ReactRouter.hashHistory,
 	    LoginView = __webpack_require__(241),
 	    StudentDashboardView = __webpack_require__(355),
-	    App = React.createFactory(__webpack_require__(356));
+	    StudentLessonPlansView = __webpack_require__(356),
+	    StudentHomeworkView = __webpack_require__(357),
+	    StudentCalendarView = __webpack_require__(358),
+	    App = React.createFactory(__webpack_require__(359));
 
 	ReactDom.render(React.createElement(
 		Router,
@@ -433,7 +436,10 @@
 			{ path: '/', component: App },
 			React.createElement(IndexRoute, { components: { main: LoginView } }),
 			React.createElement(Route, { path: 'login', components: { main: LoginView } }),
-			React.createElement(Route, { path: 'studentDashboard', components: { main: StudentDashboardView } })
+			React.createElement(Route, { path: 'studentDashboard', components: { main: StudentDashboardView } }),
+			React.createElement(Route, { path: 'studentLessonPlans', components: { main: StudentLessonPlansView } }),
+			React.createElement(Route, { path: 'studentHomework', components: { main: StudentHomeworkView } }),
+			React.createElement(Route, { path: 'studentCalendar', components: { main: StudentCalendarView } })
 		)
 	), document.getElementById('appContent'));
 
@@ -33375,7 +33381,7 @@
 			return React.createElement(
 				'div',
 				{ id: 'studentDashboardView' },
-				'STUDENT'
+				'STUDENT DASHBOARD'
 			);
 		}
 	});
@@ -33384,13 +33390,73 @@
 /* 356 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var React = __webpack_require__(8);
+
+	/* Main page content */
+	module.exports = React.createClass({
+
+		displayName: 'StudentLessPlansView',
+
+		render: function () {
+			return React.createElement(
+				'div',
+				{ id: 'studentDashboardView' },
+				'STUDENT LESSON PLANS'
+			);
+		}
+	});
+
+/***/ },
+/* 357 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(8);
+
+	/* Main page content */
+	module.exports = React.createClass({
+
+		displayName: 'StudentHomeworkView',
+
+		render: function () {
+			return React.createElement(
+				'div',
+				{ id: 'studentDashboardView' },
+				'STUDENT HOMEWORK'
+			);
+		}
+	});
+
+/***/ },
+/* 358 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(8);
+
+	/* Main page content */
+	module.exports = React.createClass({
+
+		displayName: 'StudentCalendarView',
+
+		render: function () {
+			return React.createElement(
+				'div',
+				{ id: 'studentDashboardView' },
+				'STUDENT CALENDAR'
+			);
+		}
+	});
+
+/***/ },
+/* 359 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* Main React App Component */
 	var React = __webpack_require__(8),
 	    Router = __webpack_require__(179),
-	    Reflux = __webpack_require__(357),
-	    NavStore = __webpack_require__(376),
-	    Mast = __webpack_require__(378),
-	    NavPane = __webpack_require__(379);
+	    Reflux = __webpack_require__(360),
+	    NavStore = __webpack_require__(379),
+	    Mast = __webpack_require__(381),
+	    NavPane = __webpack_require__(382);
 
 	module.exports = React.createClass({
 
@@ -33409,7 +33475,7 @@
 	      this.props.location.pathname !== DEFAULT_ROUTE_LOGIN ? React.createElement(Mast, null) : null,
 	      this.props.location.pathname !== DEFAULT_ROUTE_LOGIN ? React.createElement(NavPane, {
 	        pageRoutes: this.props.routes,
-	        pages: [{ title: 'HOME', route: '/studentDashboard', icon: 'home' }, { title: 'LESSON PLANS', route: '', icon: 'file' }, { title: 'HOMEWORK', route: '', icon: 'pencil' }, { title: 'CALENDAR', route: '', icon: 'calendar-o' }]
+	        pages: [{ title: 'HOME', route: '/studentDashboard', icon: 'home' }, { title: 'LESSON PLANS', route: '/studentLessonPlans', icon: 'file' }, { title: 'HOMEWORK', route: '/studentHomework', icon: 'pencil' }, { title: 'CALENDAR', route: '/studentCalendar', icon: 'calendar-o' }]
 	      }) : null,
 	      React.createElement(
 	        'div',
@@ -33421,26 +33487,26 @@
 	});
 
 /***/ },
-/* 357 */
+/* 360 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Reflux = __webpack_require__(358);
+	var Reflux = __webpack_require__(361);
 
-	Reflux.connect = __webpack_require__(371);
+	Reflux.connect = __webpack_require__(374);
 
-	Reflux.connectFilter = __webpack_require__(373);
+	Reflux.connectFilter = __webpack_require__(376);
 
-	Reflux.ListenerMixin = __webpack_require__(372);
+	Reflux.ListenerMixin = __webpack_require__(375);
 
-	Reflux.listenTo = __webpack_require__(374);
+	Reflux.listenTo = __webpack_require__(377);
 
-	Reflux.listenToMany = __webpack_require__(375);
+	Reflux.listenToMany = __webpack_require__(378);
 
 	module.exports = Reflux;
 
 
 /***/ },
-/* 358 */
+/* 361 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -33454,19 +33520,19 @@
 	    }
 	};
 
-	Reflux.ActionMethods = __webpack_require__(359);
+	Reflux.ActionMethods = __webpack_require__(362);
 
-	Reflux.ListenerMethods = __webpack_require__(360);
+	Reflux.ListenerMethods = __webpack_require__(363);
 
-	Reflux.PublisherMethods = __webpack_require__(369);
+	Reflux.PublisherMethods = __webpack_require__(372);
 
-	Reflux.StoreMethods = __webpack_require__(368);
+	Reflux.StoreMethods = __webpack_require__(371);
 
-	Reflux.createAction = __webpack_require__(370);
+	Reflux.createAction = __webpack_require__(373);
 
-	Reflux.createStore = __webpack_require__(364);
+	Reflux.createStore = __webpack_require__(367);
 
-	var maker = __webpack_require__(363).staticJoinCreator;
+	var maker = __webpack_require__(366).staticJoinCreator;
 
 	Reflux.joinTrailing = Reflux.all = maker("last"); // Reflux.all alias for backward compatibility
 
@@ -33476,7 +33542,7 @@
 
 	Reflux.joinConcat = maker("all");
 
-	var _ = Reflux.utils = __webpack_require__(361);
+	var _ = Reflux.utils = __webpack_require__(364);
 
 	Reflux.EventEmitter = _.EventEmitter;
 
@@ -33535,7 +33601,7 @@
 	 * Provides the set of created actions and stores for introspection
 	 */
 	/*eslint-disable no-underscore-dangle*/
-	Reflux.__keep = __webpack_require__(365);
+	Reflux.__keep = __webpack_require__(368);
 	/*eslint-enable no-underscore-dangle*/
 
 	/**
@@ -33549,7 +33615,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-/* 359 */
+/* 362 */
 /***/ function(module, exports) {
 
 	/**
@@ -33561,13 +33627,13 @@
 	module.exports = {};
 
 /***/ },
-/* 360 */
+/* 363 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _ = __webpack_require__(361),
-	    maker = __webpack_require__(363).instanceJoinCreator;
+	var _ = __webpack_require__(364),
+	    maker = __webpack_require__(366).instanceJoinCreator;
 
 	/**
 	 * Extract child listenables from a parent from their
@@ -33799,7 +33865,7 @@
 	};
 
 /***/ },
-/* 361 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -33858,7 +33924,7 @@
 	    return typeof value === "function";
 	}
 
-	exports.EventEmitter = __webpack_require__(362);
+	exports.EventEmitter = __webpack_require__(365);
 
 	exports.nextTick = function (callback) {
 	    setTimeout(callback, 0);
@@ -33884,7 +33950,7 @@
 	}
 
 /***/ },
-/* 362 */
+/* 365 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34179,7 +34245,7 @@
 
 
 /***/ },
-/* 363 */
+/* 366 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -34188,8 +34254,8 @@
 
 	"use strict";
 
-	var createStore = __webpack_require__(364),
-	    _ = __webpack_require__(361);
+	var createStore = __webpack_require__(367),
+	    _ = __webpack_require__(364);
 
 	var slice = Array.prototype.slice,
 	    strategyMethodNames = {
@@ -34300,15 +34366,15 @@
 	}
 
 /***/ },
-/* 364 */
+/* 367 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _ = __webpack_require__(361),
-	    Keep = __webpack_require__(365),
-	    mixer = __webpack_require__(366),
-	    bindMethods = __webpack_require__(367);
+	var _ = __webpack_require__(364),
+	    Keep = __webpack_require__(368),
+	    mixer = __webpack_require__(369),
+	    bindMethods = __webpack_require__(370);
 
 	var allowed = { preEmit: 1, shouldEmit: 1 };
 
@@ -34322,9 +34388,9 @@
 	 */
 	module.exports = function (definition) {
 
-	    var StoreMethods = __webpack_require__(368),
-	        PublisherMethods = __webpack_require__(369),
-	        ListenerMethods = __webpack_require__(360);
+	    var StoreMethods = __webpack_require__(371),
+	        PublisherMethods = __webpack_require__(372),
+	        ListenerMethods = __webpack_require__(363);
 
 	    definition = definition || {};
 
@@ -34369,7 +34435,7 @@
 	};
 
 /***/ },
-/* 365 */
+/* 368 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -34388,12 +34454,12 @@
 	};
 
 /***/ },
-/* 366 */
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _ = __webpack_require__(361);
+	var _ = __webpack_require__(364);
 
 	module.exports = function mix(def) {
 	    var composed = {
@@ -34452,7 +34518,7 @@
 	};
 
 /***/ },
-/* 367 */
+/* 370 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -34482,7 +34548,7 @@
 	};
 
 /***/ },
-/* 368 */
+/* 371 */
 /***/ function(module, exports) {
 
 	/**
@@ -34494,12 +34560,12 @@
 	module.exports = {};
 
 /***/ },
-/* 369 */
+/* 372 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _ = __webpack_require__(361);
+	var _ = __webpack_require__(364);
 
 	/**
 	 * A module of methods for object that you want to be able to listen to.
@@ -34596,15 +34662,15 @@
 	};
 
 /***/ },
-/* 370 */
+/* 373 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _ = __webpack_require__(361),
-	    ActionMethods = __webpack_require__(359),
-	    PublisherMethods = __webpack_require__(369),
-	    Keep = __webpack_require__(365);
+	var _ = __webpack_require__(364),
+	    ActionMethods = __webpack_require__(362),
+	    PublisherMethods = __webpack_require__(372),
+	    Keep = __webpack_require__(368);
 
 	var allowed = { preEmit: 1, shouldEmit: 1 };
 
@@ -34667,12 +34733,12 @@
 	module.exports = createAction;
 
 /***/ },
-/* 371 */
+/* 374 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ListenerMethods = __webpack_require__(360),
-	    ListenerMixin = __webpack_require__(372),
-	    _ = __webpack_require__(361);
+	var ListenerMethods = __webpack_require__(363),
+	    ListenerMixin = __webpack_require__(375),
+	    _ = __webpack_require__(364);
 
 	module.exports = function(listenable, key) {
 
@@ -34701,11 +34767,11 @@
 
 
 /***/ },
-/* 372 */
+/* 375 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _ = __webpack_require__(361),
-	    ListenerMethods = __webpack_require__(360);
+	var _ = __webpack_require__(364),
+	    ListenerMethods = __webpack_require__(363);
 
 	/**
 	 * A module meant to be consumed as a mixin by a React component. Supplies the methods from
@@ -34724,12 +34790,12 @@
 
 
 /***/ },
-/* 373 */
+/* 376 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ListenerMethods = __webpack_require__(360),
-	    ListenerMixin = __webpack_require__(372),
-	    _ = __webpack_require__(361);
+	var ListenerMethods = __webpack_require__(363),
+	    ListenerMixin = __webpack_require__(375),
+	    _ = __webpack_require__(364);
 
 	module.exports = function(listenable, key, filterFunc) {
 
@@ -34765,10 +34831,10 @@
 
 
 /***/ },
-/* 374 */
+/* 377 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ListenerMethods = __webpack_require__(360);
+	var ListenerMethods = __webpack_require__(363);
 
 	/**
 	 * A mixin factory for a React component. Meant as a more convenient way of using the `ListenerMixin`,
@@ -34806,10 +34872,10 @@
 
 
 /***/ },
-/* 375 */
+/* 378 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ListenerMethods = __webpack_require__(360);
+	var ListenerMethods = __webpack_require__(363);
 
 	/**
 	 * A mixin factory for a React component. Meant as a more convenient way of using the `listenerMixin`,
@@ -34845,11 +34911,11 @@
 
 
 /***/ },
-/* 376 */
+/* 379 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Reflux = __webpack_require__(357),
-	    NavActions = __webpack_require__(377);
+	var Reflux = __webpack_require__(360),
+	    NavActions = __webpack_require__(380);
 
 	module.exports = Reflux.createStore({
 
@@ -34871,10 +34937,10 @@
 	});
 
 /***/ },
-/* 377 */
+/* 380 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Reflux = __webpack_require__(357);
+	var Reflux = __webpack_require__(360);
 
 	var NavActions = Reflux.createActions({
 	    toggleNavPane: {}
@@ -34883,12 +34949,12 @@
 	module.exports = NavActions;
 
 /***/ },
-/* 378 */
+/* 381 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(8),
-	    Reflux = __webpack_require__(357),
-	    NavActions = __webpack_require__(377),
+	    Reflux = __webpack_require__(360),
+	    NavActions = __webpack_require__(380),
 	    FaIcon = __webpack_require__(344);
 
 	module.exports = React.createClass({
@@ -34941,13 +35007,13 @@
 	});
 
 /***/ },
-/* 379 */
+/* 382 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(8),
 	    Router = __webpack_require__(179),
-	    Reflux = __webpack_require__(357),
-	    NavStore = __webpack_require__(376),
+	    Reflux = __webpack_require__(360),
+	    NavStore = __webpack_require__(379),
 	    Link = Router.Link,
 	    PropTypes = React.PropTypes,
 	    FaIcon = __webpack_require__(344);
