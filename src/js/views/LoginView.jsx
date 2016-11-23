@@ -135,17 +135,17 @@ var LoginForm = React.createClass({
 /* Main page content */
 module.exports = React.createClass({
 
-	displayName: 'LoginView',
+    displayName: 'LoginView',
 
     render: function() {
         return (
             <div id="loginView">
-		        <div id='companyHeader'>
-				    <span className='headerBold'>{'ACCESS'}</span>
-				    <span className='headerLight'>{'3.0'}</span>
-			    </div>
-			    <LoginForm history={this.props.history}/>
-		    </div>
+                <div id='companyHeader'>
+                    <span className='headerBold'>{'ACCESS'}</span>
+                    <span className='headerLight'>{'3.0'}</span>
+                </div>
+                <LoginForm history={this.props.history}/>
+            </div>
         );
-	}
+    }
 });
