@@ -5,6 +5,7 @@ $mainDarkGray: #494e51;
 $accentGray: #d8d8d8;
 $accentDarkGreen: #55a4a4;
 $accentLightGreen: #b4e1c0;
+$pageBackgroundColor: #f4f4f4;
 
 /* Global css Styles */
 body {
@@ -13,6 +14,7 @@ body {
     width: 100%;
     height: 100%;
     font-family: Century Gothic, sans-serif;
+    background-color: $pageBackgroundColor;
 }
 
 /* generic tile */
@@ -37,16 +39,41 @@ body {
 #containerView {
     &.navFull {
         margin-left: 210px;
-        padding: 20px;
+        padding: 15px;
     }
 
     &.navSmall {
         margin-left: 80px;
-        padding: 20px;
+        padding: 15px;
+    }
+}
+
+/* generic page item - every thing on the main view should
+ * be wrapped in a page item component so that it inherits
+ * the correct styling for the page.
+ */
+.pageItem {
+    padding: 15px;
+}
+
+/* generic page header */
+.pageHeader {
+    color: $mainDarkGray;
+    font-size: 20px;
+    font-weight: bold;
+
+    &.spaceBeneath {
+        margin-bottom: 10px;
     }
 }
 
 /* Import specific css files */
 @import 'views/loginView.scss';
+@import 'views/teacherCreateLessonPlansView.scss';
+@import 'views/teacherLessonPlanView.scss';
+
+@import 'components/button.scss';
+@import 'components/colorTable.scss';
+@import 'components/controlInput.scss';
 @import 'components/mast.scss';
 @import 'components/navPane.scss';

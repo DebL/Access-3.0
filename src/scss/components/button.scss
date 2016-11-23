@@ -1,0 +1,9 @@
+/* override the default bootstrap styles with styles
+ * that fit our theme instead
+ */
+
+.btn-info {
+    color: white !important;
+    background-color: $accentDarkGreen !important;
+    border-color: $accentDarkGreen !important;
+}

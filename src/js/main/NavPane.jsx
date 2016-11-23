@@ -25,7 +25,7 @@ module.exports = React.createClass({
             <div id="navPane">
                 {this.props.pages.map(function(page) {
                     var routeTo = page.route;
-                    var isActiveClass = currentPage === routeTo ? 'activeView' : '';
+                    var isActiveClass = currentPage.indexOf(routeTo) === 0 ? 'activeView' : '';
 
                     return (
                         <div key={page.title} className={'navePaneItem ' + isActiveClass}>

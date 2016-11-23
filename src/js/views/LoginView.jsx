@@ -6,7 +6,8 @@ var React = require('react'),
     FormGroup = require('react-bootstrap/lib/FormGroup'),
     InputGroup = require('react-bootstrap/lib/InputGroup'),
     FormControl = require('react-bootstrap/lib/FormControl'),
-    FaIcon = require('react-fa');
+    FaIcon = require('react-fa'),
+    UserActions = require('UserActions');
 
 /* Component to display the login form content */
 var LoginContent = React.createClass({
@@ -19,8 +20,10 @@ var LoginContent = React.createClass({
 
     userLogin: function() {
         // TODO: check login credentials before logining user
-        // in and taking them to the dashboard page
-        this.props.history.push('/studentDashboard');
+        // in and taking them to the dashboard page. For now
+        // default user type to teacher
+        UserActions.setUserType('teacher');
+        this.props.history.push('/teacherLessonPlans');
     },
 
     render: function() {
@@ -55,6 +58,18 @@ var SignUpContent = React.createClass({
 
     displayName: 'SignUpContent',
 
+    propTypes: {
+        history: PropTypes.object
+    },
+
+    signUp: function() {
+        // TODO - actually hook up sign up button. For now
+        // just defualt to student dashboard. For now default the
+        // user store to be for a student.
+        UserActions.setUserType('student');
+        this.props.history.push('/studentDashboard');
+    },
+
     render: function() {
         return (
             <div className='signupFormContent'>
@@ -83,7 +98,7 @@ var SignUpContent = React.createClass({
                             <InputGroup.Addon></InputGroup.Addon>
                         </InputGroup>
                     </FormGroup>
-                    <Button bsStyle="info">{'SIGN UP'}</Button>
+                    <Button bsStyle="info" onClick={this.signUp}>{'SIGN UP'}</Button>
                 </form>
             </div>
         );
@@ -108,7 +123,7 @@ var LoginForm = React.createClass({
                             <LoginContent history={this.props.history}/>
                         </Tab>
                         <Tab eventKey={2} title="SIGN UP">
-                            <SignUpContent />
+                            <SignUpContent history={this.props.history}/>
                         </Tab>
                     </Tabs>
                 </div>

@@ -1,0 +1,28 @@
+.component__colorTable {
+    width: 100%;
+
+    tbody > tr {
+        width: 100%;
+        background-color: white;
+        border: 1px solid lightgray;
+
+        td {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .colorTableTitle {
+            color: $mainDarkGray;
+            font-weight: bold;
+        }
+
+        .colorTableDate {
+            color: #878787;
+        }
+
+        .colorTableArrow {
+            color: #bababa;
+        }
+    }
+}

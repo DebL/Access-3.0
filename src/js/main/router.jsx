@@ -10,6 +10,8 @@ var React = require('react'),
     StudentLessonPlansView = require('StudentLessonPlansView'),
     StudentHomeworkView = require('StudentHomeworkView'),
     StudentCalendarView = require('StudentCalendarView'),
+    TeacherLessonPlansView = require('TeacherLessonPlansView'),
+    TeacherCreateLessonPlansView = require('TeacherCreateLessonPlansView'),
 	
     App = React.createFactory(require('App'));
 
@@ -22,6 +24,8 @@ ReactDom.render((
             <Route path="studentLessonPlans" components={{ main: StudentLessonPlansView }} />
             <Route path="studentHomework" components={{ main: StudentHomeworkView }} />
             <Route path="studentCalendar" components={{ main: StudentCalendarView }} />
+            <Route path="teacherLessonPlans" components={{ main: TeacherLessonPlansView }}/>
+            <Route path="teacherLessonPlans/create" components={{ main: TeacherCreateLessonPlansView }}/>
         </Route>
     </Router>
 ), document.getElementById('appContent'));

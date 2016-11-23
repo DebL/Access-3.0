@@ -1,0 +1,13 @@
+/* override the bootstrap styles for a control label
+ * and text input to match out theme
+ */
+
+.control-label {
+    color: $accentDarkGreen;
+    font-weight: 400 !important;
+}
+
+.form-control:focus {
+    border-color: $accentDarkGreen !important;
+    box-shadow: none !important
+}

@@ -1,0 +1,88 @@
+#teacherCreateLessonPlansView {
+    .container {
+        width: 100% !important;
+    }
+
+    #lessonPlanHeader {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 20px;
+        border-bottom: 1px solid lightgray;
+    }
+
+    .textInputWrapper {
+        width: 300px;
+    }
+
+    .control-label-titleRight {
+        width: 100%;
+        text-align: right;
+    }
+
+    #teacherLessonPlansDate_group {
+        .form-control {
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+    }
+
+    #rightPanelContent {
+        background-color: white;
+        height: 100%;
+        margin-right: -30px;
+        margin-top: -10px;
+        margin-bottom: -10px;
+        box-shadow: 0px 2px 3px lightgray;
+
+        .rp__contentItem {
+            padding: 10px;
+            border-bottom: 1px solid lightgray;
+            width: 100%;
+
+            .number {
+                color: $accentDarkGreen;
+                font-weight: bold;
+                font-size: 18px;
+                margin-bottom: -5px;
+            }
+
+            .title {
+                color: $mainDarkGray;
+                font-weight: bold;
+                text-align: right;
+            }
+
+            .type {
+                color: $accentDarkGreen;
+                text-align: right;
+
+                .typeText {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    .headerContent {
+        color: $mainDarkGray;
+        font-weight: bold;
+        font-size: 16px;
+        text-align: center;
+        padding: 15px;
+        border-bottom: 1px solid $accentGray;
+    }
+
+    .ctCell {
+        position: relative;
+    }
+
+    .selectedCheck {
+        color: $accentDarkGreen;
+        font-size: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-right: -10px;
+        margin-top: -10px;
+    }
+}

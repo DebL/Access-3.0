@@ -84,6 +84,8 @@ module.exports = {
 			Path.resolve(__dirname, 'src/js/actions'),
 			Path.resolve(__dirname, 'src/js/stores'),
 			Path.resolve(__dirname, 'src/js/views'),
+			Path.resolve(__dirname, 'src/js/components'),
+			Path.resolve(__dirname, 'src/js/utils'),
 			Path.resolve(__dirname, 'node_modules'),
 			Path.resolve(__dirname),
 		],
