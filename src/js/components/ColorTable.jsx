@@ -11,33 +11,12 @@ module.exports = React.createClass({
         rowSelectedHandler: PropTypes.func
     },
 
-    getInitialState: function() {
-        return {
-            highlightedRows: {}
-        };
-    },
-
     tableRowSelected: function(index, item) {
-
-        /* handle the highlighting section of the table row */
-        var rowId = 'row' + index;
-        var newRows = this.state.highlightedRows;
-
-        if (rowId in this.state.highlightedRows) {
-            newRows[rowId].highlighted = !(this.state.highlightedRows[rowId].highlighted);
-        } else {
-            newRows[rowId] = { highlighted: true };
-        }
-
-        this.setState({
-            hightlightedRows: newRows
-        });
-
         /* we also need to handle the custom handler passed in to
          * the table component on row selection if there is one.
          */
          if (this.props.rowSelectedHandler) {
-            this.props.rowSelectedHandler(item);
+            this.props.rowSelectedHandler(item.id);
          }
     },
 
@@ -47,9 +26,7 @@ module.exports = React.createClass({
             <table className='component__colorTable'>
                 <tbody>
                     {this.props.rows.map(function(rowItem, idx) {
-                        var rowId = 'row' + idx;
-                        var rowSelected = rowItem.selectable && (rowId in this.state.highlightedRows) &&
-                            this.state.hightlightedRows[rowId].highlighted;
+                        var rowSelected = rowItem.highlight;
                         var rowStyle = rowSelected ? { 'opacity': '0.5' } : {};
                         var style = rowItem.color ? { 'borderLeft': '7px solid ' + rowItem.color } : {}; 
 

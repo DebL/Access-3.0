@@ -1,5 +1,6 @@
 var React = require('react'),
     Reflux = require('reflux'),
+    _ = require('lodash'),
     ColorTable = require('ColorTable'),
     Colors = require('colors'),
     Conversions = require('conversions'),
@@ -9,6 +10,7 @@ var React = require('react'),
     Grid = require('react-bootstrap/lib/Grid'),
     Row = require('react-bootstrap/lib/Row'),
     Col = require('react-bootstrap/lib/Col'),
+    Button = require('react-bootstrap/lib/Button'),
     FaIcon = require('react-fa'),
     DatePicker = require('react-bootstrap-date-picker'),
     LessonPlanContentStore = require('LessonPlanContentStore'),
@@ -26,29 +28,50 @@ module.exports = React.createClass({
         Reflux.connect(TeacherLessonPlanStore, 'tLessonPlanSt')
     ],
 
-    rowSelected: function(rowItem) {
+    getInitialState: function() {
+        var d = new Date();
+        return {
+            lessonPlanName: '',
+            lessonPlanDate: d.toLocaleDateString(),
+            dateValue: d.toISOString(),
+            itemSelected: {}
+        };
+    },
+
+    rowSelected: function(id) {
         /* use the id of the rowItem to match it to the
          * correct lesson plan item to set in the store.
          */
 
-        var type = Conversions.contentIdToType(rowItem.id);
+        var type = Conversions.contentIdToType(id);
         for (var i=0; i<this.state.contentSt[type].length; i++) {
             var item = this.state.contentSt[type][i];
-            if (item.id === rowItem.id) {
+            if (item.id === id) {
                 TeacherLessonPlanActions.addLessonPlanItem(item);
-                return;
+                break;
             }
         }
+
+        var tempObj = _.cloneDeep(this.state.itemSelected);
+        if (id in tempObj) {
+            tempObj[id].highlighted = !(tempObj[id].highlighted); 
+        } else {
+            tempObj[id] = { highlighted: true };
+        }
+
+        this.setState({
+            itemSelected: tempObj
+        });
     },
 
     getColor: function(idx) {
         switch(idx) {
             case 0:
-                return Colors.tan;
+                return Colors.colors.tan;
             case 1:
-                return Colors.deepBlue
+                return Colors.colors.deepBlue
             default:
-                return Colors.teal
+                return Colors.colors.teal
         };
     },
 
@@ -65,6 +88,38 @@ module.exports = React.createClass({
         }
     },
 
+    lessonPlanName: function(e) {
+        this.setState({
+            lessonPlanName: e.target.value
+        });
+    },
+
+    dateChange: function(value, formattedValue) {
+        this.setState({
+            dateValue: value,
+            lessonPlanDate: formattedValue
+        });
+    },
+
+    clearLesson: function() {
+        TeacherLessonPlanActions.clearCreatedLessonPlan();
+
+        this.setState({
+            itemSelected: {}
+        });
+    },
+
+    saveLesson: function() {
+        if (this.state.lessonPlanName === '') {
+            alert('Please enter a Lesson Plan Name to save this plan');
+        } else if (this.state.lessonPlanDate === null) {
+            alert('Please enter a Lesson Plan Date to save this plan');
+        } else {
+            TeacherLessonPlanActions.saveCreatedLessonPlan(this.state.lessonPlanName,
+                this.state.lessonPlanDate, this.props.history);
+        }
+    },
+
     render: function() {
 
         /* TODO - Lesson plan content need to be pulled from the store.
@@ -76,10 +131,12 @@ module.exports = React.createClass({
             var elem = this.state.contentSt.reading[i];
             tableRows.push({
                 id: elem.id,
-                title: elem.title,
+                title: elem.title.toUpperCase(),
                 color: this.getColor(i),
                 deatils: false,
-                selectable: true
+                selectable: true,
+                highlight: elem.id in this.state.itemSelected ? 
+                    this.state.itemSelected[elem.id].highlighted : false
             });
          }
 
@@ -87,19 +144,20 @@ module.exports = React.createClass({
             <div id="teacherCreateLessonPlansView">
                 <Grid>
                     <Row className='show-grid'>
-                    <Col xs={12} md={9}>
+                    <Col id='column1' xs={12} md={9}>
                         <div id='lessonPlanHeader' className='pageItem'>
                             <div>
                                 <ControlLabel>{'LESSON PLAN NAME'}</ControlLabel>
                                 <div className='textInputWrapper'>
-                                    <FormControl type='text' />
+                                    <FormControl type='text' onChange={this.lessonPlanName}/>
                                 </div>
                             </div>
 
                             <div>
                                 <ControlLabel bsStyle={'titleRight'}>{'DATE'}</ControlLabel>
                                 <div className='textInputWrapper'>
-                                    <DatePicker id='teacherLessonPlansDate'/>
+                                    <DatePicker id='teacherLessonPlansDate' value={this.state.dateValue}
+                                        onChange={this.dateChange}/>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +168,31 @@ module.exports = React.createClass({
                         </div>
 
                         <div className='pageItem'>
-                            <div className='pageHeader'>{'VIDEOS'}</div>
+                            <div className='pageHeader spaceBeneath'>{'VIDEOS'}</div>
+                            <div id='videoRow'>
+                                {this.state.contentSt.video.map(function(vid, i) {
+                                    var selected = (vid.id in this.state.itemSelected) &&
+                                        this.state.itemSelected[vid.id].highlighted;
+                                    var highlightClass = selected ? 'highlight' : '';
+
+                                    return (
+                                        <div key={i} className={'videoTile tileLight ' + highlightClass}
+                                            onClick={this.rowSelected.bind(this, vid.id)}>
+                                            <div className='header'>
+                                                <div className='title'>{vid.title}</div>
+                                                {vid.explicit ? <div className='explicit'>{'EXPLICIT'}</div> : null}
+                                            </div>
+                                            <div className='embedVideo'></div>
+
+                                            {selected ?
+                                                <div className='selectedCheck'>
+                                                    <FaIcon.Icon name='check-circle-o' />
+                                                </div>
+                                            : null}
+                                        </div>
+                                    );
+                                }, this)}
+                            </div>
                         </div> 
 
                         <div className='pageItem'>
@@ -132,6 +214,13 @@ module.exports = React.createClass({
                                     </div>
                                 );
                             }, this)}
+
+                            {this.state.tLessonPlanSt.createdLessonPlan.length > 0 ?
+                            <div id='rp__footer'>
+                                <Button bsStyle='primary' onClick={this.clearLesson}>{'CLEAR'}</Button>
+                                <Button bsStyle='info' onClick={this.saveLesson}>{'SAVE'}</Button>
+                            </div>
+                            : null}
                         </div>
                     </Col>
                     </Row>

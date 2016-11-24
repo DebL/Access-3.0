@@ -44,5 +44,24 @@ module.exports = Reflux.createStore({
 
         this.state.createdLessonPlan.push(newLessonPlanItem);
         this.trigger(this.state);
+    },
+
+    onClearCreatedLessonPlan: function() {
+        this.state.createdLessonPlan = [];
+        this.trigger(this.state);
+    },
+
+    onSaveCreatedLessonPlan: function(name, date, history) {
+        var newPlan = {
+            name: name,
+            date: date,
+            plan: this.state.createdLessonPlan
+        };
+
+        this.state.allLessonPlans.push(newPlan);
+        this.state.createdLessonPlan = [];
+        this.trigger(this.state);
+
+        history.push('/teacherLessonPlans');
     }
 });

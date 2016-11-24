@@ -1,7 +1,9 @@
 var Reflux = require('reflux');
 
 var TeacherLessonPlanActions = Reflux.createActions({
-    addLessonPlanItem: {}
+    addLessonPlanItem: {},
+    clearCreatedLessonPlan: {},
+    saveCreatedLessonPlan: {}
 });
 
 module.exports = TeacherLessonPlanActions;
