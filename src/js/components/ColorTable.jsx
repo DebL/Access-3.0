@@ -16,7 +16,7 @@ module.exports = React.createClass({
          * the table component on row selection if there is one.
          */
          if (this.props.rowSelectedHandler) {
-            this.props.rowSelectedHandler(item.id);
+            this.props.rowSelectedHandler(item);
          }
     },
 

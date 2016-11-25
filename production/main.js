@@ -34905,6 +34905,7 @@
 /* 379 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* view for the teachers list of currently created lesson plans */
 	var React = __webpack_require__(8),
 	    Reflux = __webpack_require__(356),
 	    ColorTable = __webpack_require__(380),
@@ -34919,8 +34920,14 @@
 
 	    mixins: [Reflux.connect(TeacherLessonPlanStore, 'tLessonPlanSt')],
 
+	    /* handler for selected the create lesson button */
 	    createLesson: function () {
 	        this.props.history.push('/teacherLessonPlans/create');
+	    },
+
+	    /* callback handler for a table row being selected */
+	    rowSelected: function (row) {
+	        TeacherLessonPlanActions.loadLessonPlan(row.title, this.props.history);
 	    },
 
 	    render: function () {
@@ -34932,7 +34939,7 @@
 	                date: elem.date,
 	                color: Colors.colorsArray[i],
 	                details: true,
-	                selectable: false
+	                selectable: true
 	            });
 	        }
 
@@ -34960,7 +34967,7 @@
 	            React.createElement(
 	                'div',
 	                { className: 'pageItem' },
-	                React.createElement(ColorTable, { rows: tableRows })
+	                React.createElement(ColorTable, { rows: tableRows, rowSelectedHandler: this.rowSelected })
 	            )
 	        );
 	    }
@@ -34988,7 +34995,7 @@
 	         * the table component on row selection if there is one.
 	         */
 	        if (this.props.rowSelectedHandler) {
-	            this.props.rowSelectedHandler(item.id);
+	            this.props.rowSelectedHandler(item);
 	        }
 	    },
 
@@ -35071,7 +35078,11 @@
 
 	    state: {
 	        allLessonPlans: [],
-	        createdLessonPlan: []
+	        createdLessonPlan: {
+	            name: null,
+	            date: null,
+	            plan: []
+	        }
 	    },
 
 	    getInitialState: function () {
@@ -35087,12 +35098,12 @@
 	         * and the user is choosing to deselect it an remove it
 	         * from the list.
 	         */
-	        for (var i = 0; i < this.state.createdLessonPlan.length; i++) {
-	            if (this.state.createdLessonPlan[i].id === item.id) {
-	                var tempArray = _.cloneDeep(this.state.createdLessonPlan);
+	        for (var i = 0; i < this.state.createdLessonPlan.plan.length; i++) {
+	            if (this.state.createdLessonPlan.plan[i].id === item.id) {
+	                var tempArray = _.cloneDeep(this.state.createdLessonPlan.plan);
 	                tempArray.splice(i, 1);
 
-	                this.state.createdLessonPlan = tempArray;
+	                this.state.createdLessonPlan.plan = tempArray;
 	                this.trigger(this.state);
 	                return;
 	            }
@@ -35105,27 +35116,47 @@
 	            type: item.type
 	        };
 
-	        this.state.createdLessonPlan.push(newLessonPlanItem);
+	        this.state.createdLessonPlan.plan.push(newLessonPlanItem);
 	        this.trigger(this.state);
 	    },
 
+	    /* clear store data for the current lesson plan */
 	    onClearCreatedLessonPlan: function () {
-	        this.state.createdLessonPlan = [];
+	        this.state.createdLessonPlan.plan = [];
 	        this.trigger(this.state);
 	    },
 
+	    /* save the current lesson plan in the store */
 	    onSaveCreatedLessonPlan: function (name, date, history) {
-	        var newPlan = {
-	            name: name,
-	            date: date,
-	            plan: this.state.createdLessonPlan
-	        };
 
-	        this.state.allLessonPlans.push(newPlan);
-	        this.state.createdLessonPlan = [];
+	        this.state.createdLessonPlan.name = name;
+	        this.state.createdLessonPlan.date = date;
+
+	        var plan = _.cloneDeep(this.state.createdLessonPlan);
+	        this.state.allLessonPlans.push(plan);
+
+	        this.state.createdLessonPlan.name = null;
+	        this.state.createdLessonPlan.date = null;
+	        this.state.createdLessonPlan.plan = [];
 	        this.trigger(this.state);
 
 	        history.push('/teacherLessonPlans');
+	    },
+
+	    /* TODO - Right now we are matching the lesson plan off of
+	     * the name - but we need to update that to go off of
+	     * a unique ID because lesson plans could have the same
+	     * name. This needs to be done when the lesson plans
+	     * get a unique ID
+	     */
+	    onLoadLessonPlan: function (name, history) {
+	        for (var i = 0; i < this.state.allLessonPlans.length; i++) {
+	            var lp = this.state.allLessonPlans[i];
+	            if (name === lp.name) {
+	                this.state.createdLessonPlan = _.cloneDeep(lp);
+	                history.push('/teacherLessonPlans/create');
+	            }
+	        }
 	    }
 	});
 
@@ -35138,6 +35169,7 @@
 	var TeacherLessonPlanActions = Reflux.createActions({
 	    addLessonPlanItem: {},
 	    clearCreatedLessonPlan: {},
+	    loadLessonPlan: {},
 	    saveCreatedLessonPlan: {}
 	});
 
@@ -52235,6 +52267,7 @@
 /* 386 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* View for teachers to created a new lesson plan or edit an existing one */
 	var React = __webpack_require__(8),
 	    Reflux = __webpack_require__(356),
 	    _ = __webpack_require__(384),
@@ -52253,19 +52286,25 @@
 
 	    getInitialState: function () {
 	        var d = new Date();
+	        var date = d.toLocaleDateString();
+
+	        /* TODO - need to update the initial name and date
+	         * to be that of the current selected lesson plan
+	         * if there is one.
+	         */
 	        return {
 	            lessonPlanName: '',
-	            lessonPlanDate: d.toLocaleDateString(),
-	            dateValue: d.toISOString(),
-	            itemSelected: {}
+	            lessonPlanDate: date,
+	            dateValue: d.toISOString()
 	        };
 	    },
 
-	    rowSelected: function (id) {
+	    /* element selected to add to the lesson plan */
+	    rowSelected: function (item) {
 	        /* use the id of the rowItem to match it to the
 	         * correct lesson plan item to set in the store.
 	         */
-
+	        var id = item.id;
 	        var type = Conversions.contentIdToType(id);
 	        for (var i = 0; i < this.state.contentSt[type].length; i++) {
 	            var item = this.state.contentSt[type][i];
@@ -52274,19 +52313,9 @@
 	                break;
 	            }
 	        }
-
-	        var tempObj = _.cloneDeep(this.state.itemSelected);
-	        if (id in tempObj) {
-	            tempObj[id].highlighted = !tempObj[id].highlighted;
-	        } else {
-	            tempObj[id] = { highlighted: true };
-	        }
-
-	        this.setState({
-	            itemSelected: tempObj
-	        });
 	    },
 
+	    /* temp to get a color for the color table */
 	    getColor: function (idx) {
 	        switch (idx) {
 	            case 0:
@@ -52298,6 +52327,7 @@
 	        };
 	    },
 
+	    /* get the correct icon depending on the item type */
 	    getIcon: function (type) {
 	        switch (type) {
 	            case 'reading':
@@ -52311,12 +52341,14 @@
 	        }
 	    },
 
+	    /* onChange handler for a lesson plan name */
 	    lessonPlanName: function (e) {
 	        this.setState({
 	            lessonPlanName: e.target.value
 	        });
 	    },
 
+	    /* on change handler for the calendar picker */
 	    dateChange: function (value, formattedValue) {
 	        this.setState({
 	            dateValue: value,
@@ -52324,6 +52356,7 @@
 	        });
 	    },
 
+	    /* clear the selected lesson items */
 	    clearLesson: function () {
 	        TeacherLessonPlanActions.clearCreatedLessonPlan();
 
@@ -52332,6 +52365,7 @@
 	        });
 	    },
 
+	    /* save the current lesson */
 	    saveLesson: function () {
 	        if (this.state.lessonPlanName === '') {
 	            alert('Please enter a Lesson Plan Name to save this plan');
@@ -52340,6 +52374,18 @@
 	        } else {
 	            TeacherLessonPlanActions.saveCreatedLessonPlan(this.state.lessonPlanName, this.state.lessonPlanDate, this.props.history);
 	        }
+	    },
+
+	    /* check if an item is in the current lesson plan or not */
+	    isInLessonPlan: function (id) {
+	        for (var i = 0; i < this.state.tLessonPlanSt.createdLessonPlan.plan.length; i++) {
+	            var item = this.state.tLessonPlanSt.createdLessonPlan.plan[i];
+	            if (item.id === id) {
+	                return true;
+	            }
+	        }
+
+	        return false;
 	    },
 
 	    render: function () {
@@ -52357,7 +52403,7 @@
 	                color: this.getColor(i),
 	                deatils: false,
 	                selectable: true,
-	                highlight: elem.id in this.state.itemSelected ? this.state.itemSelected[elem.id].highlighted : false
+	                highlight: this.isInLessonPlan(elem.id)
 	            });
 	        }
 
@@ -52428,13 +52474,13 @@
 	                                'div',
 	                                { id: 'videoRow' },
 	                                this.state.contentSt.video.map(function (vid, i) {
-	                                    var selected = vid.id in this.state.itemSelected && this.state.itemSelected[vid.id].highlighted;
+	                                    var selected = this.isInLessonPlan(vid.id);
 	                                    var highlightClass = selected ? 'highlight' : '';
 
 	                                    return React.createElement(
 	                                        'div',
 	                                        { key: i, className: 'videoTile tileLight ' + highlightClass,
-	                                            onClick: this.rowSelected.bind(this, vid.id) },
+	                                            onClick: this.rowSelected.bind(this, vid) },
 	                                        React.createElement(
 	                                            'div',
 	                                            { className: 'header' },
@@ -52480,7 +52526,7 @@
 	                                { className: 'headerContent' },
 	                                'RE-ORDER LESSON PLAN'
 	                            ),
-	                            this.state.tLessonPlanSt.createdLessonPlan.map(function (item, i) {
+	                            this.state.tLessonPlanSt.createdLessonPlan.plan.map(function (item, i) {
 	                                return React.createElement(
 	                                    'div',
 	                                    { className: 'rp__contentItem', key: i },
@@ -52510,7 +52556,7 @@
 	                                    )
 	                                );
 	                            }, this),
-	                            this.state.tLessonPlanSt.createdLessonPlan.length > 0 ? React.createElement(
+	                            this.state.tLessonPlanSt.createdLessonPlan.plan.length > 0 ? React.createElement(
 	                                'div',
 	                                { id: 'rp__footer' },
 	                                React.createElement(

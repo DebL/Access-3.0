@@ -1,3 +1,4 @@
+/* View for teachers to created a new lesson plan or edit an existing one */
 var React = require('react'),
     Reflux = require('reflux'),
     _ = require('lodash'),
@@ -30,19 +31,25 @@ module.exports = React.createClass({
 
     getInitialState: function() {
         var d = new Date();
+        var date = d.toLocaleDateString();
+
+        /* TODO - need to update the initial name and date
+         * to be that of the current selected lesson plan
+         * if there is one.
+         */
         return {
             lessonPlanName: '',
-            lessonPlanDate: d.toLocaleDateString(),
-            dateValue: d.toISOString(),
-            itemSelected: {}
+            lessonPlanDate: date,
+            dateValue: d.toISOString()
         };
     },
 
-    rowSelected: function(id) {
+    /* element selected to add to the lesson plan */
+    rowSelected: function(item) {
         /* use the id of the rowItem to match it to the
          * correct lesson plan item to set in the store.
          */
-
+        var id = item.id;
         var type = Conversions.contentIdToType(id);
         for (var i=0; i<this.state.contentSt[type].length; i++) {
             var item = this.state.contentSt[type][i];
@@ -51,19 +58,9 @@ module.exports = React.createClass({
                 break;
             }
         }
-
-        var tempObj = _.cloneDeep(this.state.itemSelected);
-        if (id in tempObj) {
-            tempObj[id].highlighted = !(tempObj[id].highlighted); 
-        } else {
-            tempObj[id] = { highlighted: true };
-        }
-
-        this.setState({
-            itemSelected: tempObj
-        });
     },
 
+    /* temp to get a color for the color table */
     getColor: function(idx) {
         switch(idx) {
             case 0:
@@ -75,6 +72,7 @@ module.exports = React.createClass({
         };
     },
 
+    /* get the correct icon depending on the item type */
     getIcon: function(type) {
         switch(type) {
             case 'reading':
@@ -88,12 +86,14 @@ module.exports = React.createClass({
         }
     },
 
+    /* onChange handler for a lesson plan name */
     lessonPlanName: function(e) {
         this.setState({
             lessonPlanName: e.target.value
         });
     },
 
+    /* on change handler for the calendar picker */
     dateChange: function(value, formattedValue) {
         this.setState({
             dateValue: value,
@@ -101,6 +101,7 @@ module.exports = React.createClass({
         });
     },
 
+    /* clear the selected lesson items */
     clearLesson: function() {
         TeacherLessonPlanActions.clearCreatedLessonPlan();
 
@@ -109,6 +110,7 @@ module.exports = React.createClass({
         });
     },
 
+    /* save the current lesson */
     saveLesson: function() {
         if (this.state.lessonPlanName === '') {
             alert('Please enter a Lesson Plan Name to save this plan');
@@ -118,6 +120,18 @@ module.exports = React.createClass({
             TeacherLessonPlanActions.saveCreatedLessonPlan(this.state.lessonPlanName,
                 this.state.lessonPlanDate, this.props.history);
         }
+    },
+
+    /* check if an item is in the current lesson plan or not */
+    isInLessonPlan: function(id) {
+        for (var i=0; i<this.state.tLessonPlanSt.createdLessonPlan.plan.length; i++) {
+            var item = this.state.tLessonPlanSt.createdLessonPlan.plan[i];
+            if (item.id === id) {
+                return true;
+            }
+        }
+
+        return false;
     },
 
     render: function() {
@@ -135,8 +149,7 @@ module.exports = React.createClass({
                 color: this.getColor(i),
                 deatils: false,
                 selectable: true,
-                highlight: elem.id in this.state.itemSelected ? 
-                    this.state.itemSelected[elem.id].highlighted : false
+                highlight: this.isInLessonPlan(elem.id)
             });
          }
 
@@ -171,13 +184,12 @@ module.exports = React.createClass({
                             <div className='pageHeader spaceBeneath'>{'VIDEOS'}</div>
                             <div id='videoRow'>
                                 {this.state.contentSt.video.map(function(vid, i) {
-                                    var selected = (vid.id in this.state.itemSelected) &&
-                                        this.state.itemSelected[vid.id].highlighted;
+                                    var selected = this.isInLessonPlan(vid.id);
                                     var highlightClass = selected ? 'highlight' : '';
 
                                     return (
                                         <div key={i} className={'videoTile tileLight ' + highlightClass}
-                                            onClick={this.rowSelected.bind(this, vid.id)}>
+                                            onClick={this.rowSelected.bind(this, vid)}>
                                             <div className='header'>
                                                 <div className='title'>{vid.title}</div>
                                                 {vid.explicit ? <div className='explicit'>{'EXPLICIT'}</div> : null}
@@ -202,7 +214,7 @@ module.exports = React.createClass({
                     <Col xs={8} md={3}>
                         <div id='rightPanelContent'>
                             <div className='headerContent'>{'RE-ORDER LESSON PLAN'}</div>
-                            {this.state.tLessonPlanSt.createdLessonPlan.map(function(item, i) {
+                            {this.state.tLessonPlanSt.createdLessonPlan.plan.map(function(item, i) {
                                 return (
                                     <div className='rp__contentItem' key={i}>
                                         <div className='number'>{(i + 1)}</div>
@@ -215,7 +227,7 @@ module.exports = React.createClass({
                                 );
                             }, this)}
 
-                            {this.state.tLessonPlanSt.createdLessonPlan.length > 0 ?
+                            {this.state.tLessonPlanSt.createdLessonPlan.plan.length > 0 ?
                             <div id='rp__footer'>
                                 <Button bsStyle='primary' onClick={this.clearLesson}>{'CLEAR'}</Button>
                                 <Button bsStyle='info' onClick={this.saveLesson}>{'SAVE'}</Button>

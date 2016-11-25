@@ -8,7 +8,11 @@ module.exports = Reflux.createStore({
 
     state: {
         allLessonPlans: [],
-        createdLessonPlan: []
+        createdLessonPlan: {
+            name: null,
+            date: null,
+            plan: []
+        }
     },
 
     getInitialState: function() {
@@ -24,12 +28,12 @@ module.exports = Reflux.createStore({
          * and the user is choosing to deselect it an remove it
          * from the list.
          */
-        for (var i=0; i<this.state.createdLessonPlan.length; i++) {
-            if (this.state.createdLessonPlan[i].id === item.id) {
-                var tempArray = _.cloneDeep(this.state.createdLessonPlan);
+        for (var i=0; i<this.state.createdLessonPlan.plan.length; i++) {
+            if (this.state.createdLessonPlan.plan[i].id === item.id) {
+                var tempArray = _.cloneDeep(this.state.createdLessonPlan.plan);
                 tempArray.splice(i, 1);
 
-                this.state.createdLessonPlan = tempArray;
+                this.state.createdLessonPlan.plan = tempArray;
                 this.trigger(this.state);
                 return;
             }
@@ -42,26 +46,46 @@ module.exports = Reflux.createStore({
             type: item.type
         };
 
-        this.state.createdLessonPlan.push(newLessonPlanItem);
+        this.state.createdLessonPlan.plan.push(newLessonPlanItem);
         this.trigger(this.state);
     },
 
+    /* clear store data for the current lesson plan */
     onClearCreatedLessonPlan: function() {
-        this.state.createdLessonPlan = [];
+        this.state.createdLessonPlan.plan = [];
         this.trigger(this.state);
     },
 
+    /* save the current lesson plan in the store */
     onSaveCreatedLessonPlan: function(name, date, history) {
-        var newPlan = {
-            name: name,
-            date: date,
-            plan: this.state.createdLessonPlan
-        };
 
-        this.state.allLessonPlans.push(newPlan);
-        this.state.createdLessonPlan = [];
+        this.state.createdLessonPlan.name = name;
+        this.state.createdLessonPlan.date = date;
+
+        var plan = _.cloneDeep(this.state.createdLessonPlan);
+        this.state.allLessonPlans.push(plan);
+
+        this.state.createdLessonPlan.name = null;
+        this.state.createdLessonPlan.date = null;
+        this.state.createdLessonPlan.plan = [];
         this.trigger(this.state);
 
         history.push('/teacherLessonPlans');
+    },
+
+    /* TODO - Right now we are matching the lesson plan off of
+     * the name - but we need to update that to go off of
+     * a unique ID because lesson plans could have the same
+     * name. This needs to be done when the lesson plans
+     * get a unique ID
+     */
+    onLoadLessonPlan: function(name, history) {
+        for (var i=0; i<this.state.allLessonPlans.length; i++) {
+            var lp = this.state.allLessonPlans[i];
+            if (name === lp.name) {
+                this.state.createdLessonPlan = _.cloneDeep(lp);
+                history.push('/teacherLessonPlans/create');
+            }
+        }
     }
 });

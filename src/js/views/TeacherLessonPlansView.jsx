@@ -1,3 +1,4 @@
+/* view for the teachers list of currently created lesson plans */
 var React = require('react'),
     Reflux = require('reflux'),
     ColorTable = require('ColorTable'),
@@ -14,8 +15,14 @@ module.exports = React.createClass({
         Reflux.connect(TeacherLessonPlanStore, 'tLessonPlanSt')
     ],
 
+    /* handler for selected the create lesson button */
     createLesson: function() {
         this.props.history.push('/teacherLessonPlans/create');
+    },
+
+    /* callback handler for a table row being selected */
+    rowSelected: function(row) {
+        TeacherLessonPlanActions.loadLessonPlan(row.title, this.props.history);
     },
 
     render: function() {
@@ -27,7 +34,7 @@ module.exports = React.createClass({
                 date: elem.date,
                 color: Colors.colorsArray[i],
                 details: true,
-                selectable: false
+                selectable: true
             });
         }
 
@@ -40,7 +47,7 @@ module.exports = React.createClass({
                     </div>
                 </div>
                 <div className='pageItem'>
-                    <ColorTable rows={tableRows}/>
+                    <ColorTable rows={tableRows} rowSelectedHandler={this.rowSelected}/>
                 </div>
             </div>
         );
