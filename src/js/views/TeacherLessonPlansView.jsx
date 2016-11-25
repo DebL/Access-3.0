@@ -26,12 +26,17 @@ module.exports = React.createClass({
     },
 
     render: function() {
+
+        /* create the table rows for the color table */
         var tableRows = [];
         for (var i=0; i<this.state.tLessonPlanSt.allLessonPlans.length; i++) {
             var elem = this.state.tLessonPlanSt.allLessonPlans[i];
+            var date = Date.parse(elem.date);
+            var newD = new Date(date).toLocaleDateString();
+
             tableRows.push({
                 title: elem.name.toUpperCase(),
-                date: elem.date,
+                date: newD,
                 color: Colors.colorsArray[i],
                 details: true,
                 selectable: true

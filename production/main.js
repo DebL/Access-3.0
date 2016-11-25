@@ -34931,12 +34931,17 @@
 	    },
 
 	    render: function () {
+
+	        /* create the table rows for the color table */
 	        var tableRows = [];
 	        for (var i = 0; i < this.state.tLessonPlanSt.allLessonPlans.length; i++) {
 	            var elem = this.state.tLessonPlanSt.allLessonPlans[i];
+	            var date = Date.parse(elem.date);
+	            var newD = new Date(date).toLocaleDateString();
+
 	            tableRows.push({
 	                title: elem.name.toUpperCase(),
-	                date: elem.date,
+	                date: newD,
 	                color: Colors.colorsArray[i],
 	                details: true,
 	                selectable: true
@@ -35128,6 +35133,14 @@
 
 	    /* save the current lesson plan in the store */
 	    onSaveCreatedLessonPlan: function (name, date, history) {
+
+	        /* TODO - right now anything gets added
+	         * as a lesson plan even if you are editing
+	         * an existing plan and re saving it it gets
+	         * added as a new one. Need to check if the one
+	         * being edited already exists and update it instead
+	         * of creating a new one
+	         */
 
 	        this.state.createdLessonPlan.name = name;
 	        this.state.createdLessonPlan.date = date;
@@ -52286,17 +52299,25 @@
 
 	    getInitialState: function () {
 	        var d = new Date();
-	        var date = d.toLocaleDateString();
-
-	        /* TODO - need to update the initial name and date
-	         * to be that of the current selected lesson plan
-	         * if there is one.
-	         */
 	        return {
 	            lessonPlanName: '',
-	            lessonPlanDate: date,
 	            dateValue: d.toISOString()
 	        };
+	    },
+
+	    componentDidMount: function () {
+	        /* NOTE - we generally should not be setting the state
+	         * in componentDidMount - might want to find a better
+	         * way to do this
+	         */
+	        var d = new Date();
+	        var date = this.state.tLessonPlanSt.createdLessonPlan.date ? this.state.tLessonPlanSt.createdLessonPlan.date : d.toISOString();
+	        var name = this.state.tLessonPlanSt.createdLessonPlan.name ? this.state.tLessonPlanSt.createdLessonPlan.name : '';
+
+	        this.setState({
+	            lessonPlanName: name,
+	            dateValue: date
+	        });
 	    },
 
 	    /* element selected to add to the lesson plan */
@@ -52351,8 +52372,7 @@
 	    /* on change handler for the calendar picker */
 	    dateChange: function (value, formattedValue) {
 	        this.setState({
-	            dateValue: value,
-	            lessonPlanDate: formattedValue
+	            dateValue: value
 	        });
 	    },
 
@@ -52369,10 +52389,10 @@
 	    saveLesson: function () {
 	        if (this.state.lessonPlanName === '') {
 	            alert('Please enter a Lesson Plan Name to save this plan');
-	        } else if (this.state.lessonPlanDate === null) {
+	        } else if (this.state.dateValue === null) {
 	            alert('Please enter a Lesson Plan Date to save this plan');
 	        } else {
-	            TeacherLessonPlanActions.saveCreatedLessonPlan(this.state.lessonPlanName, this.state.lessonPlanDate, this.props.history);
+	            TeacherLessonPlanActions.saveCreatedLessonPlan(this.state.lessonPlanName, this.state.dateValue, this.props.history);
 	        }
 	    },
 
@@ -52433,7 +52453,8 @@
 	                                React.createElement(
 	                                    'div',
 	                                    { className: 'textInputWrapper' },
-	                                    React.createElement(FormControl, { type: 'text', onChange: this.lessonPlanName })
+	                                    React.createElement(FormControl, { type: 'text', value: this.state.lessonPlanName,
+	                                        onChange: this.lessonPlanName })
 	                                )
 	                            ),
 	                            React.createElement(

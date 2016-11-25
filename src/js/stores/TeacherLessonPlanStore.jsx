@@ -59,6 +59,14 @@ module.exports = Reflux.createStore({
     /* save the current lesson plan in the store */
     onSaveCreatedLessonPlan: function(name, date, history) {
 
+        /* TODO - right now anything gets added
+         * as a lesson plan even if you are editing
+         * an existing plan and re saving it it gets
+         * added as a new one. Need to check if the one
+         * being edited already exists and update it instead
+         * of creating a new one
+         */
+
         this.state.createdLessonPlan.name = name;
         this.state.createdLessonPlan.date = date;
 

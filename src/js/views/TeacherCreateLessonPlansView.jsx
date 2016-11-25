@@ -31,17 +31,27 @@ module.exports = React.createClass({
 
     getInitialState: function() {
         var d = new Date();
-        var date = d.toLocaleDateString();
-
-        /* TODO - need to update the initial name and date
-         * to be that of the current selected lesson plan
-         * if there is one.
-         */
         return {
             lessonPlanName: '',
-            lessonPlanDate: date,
             dateValue: d.toISOString()
         };
+    },
+
+    componentDidMount: function() {
+        /* NOTE - we generally should not be setting the state
+         * in componentDidMount - might want to find a better
+         * way to do this
+         */
+        var d = new Date();
+        var date = this.state.tLessonPlanSt.createdLessonPlan.date ?
+            this.state.tLessonPlanSt.createdLessonPlan.date : d.toISOString();
+        var name = this.state.tLessonPlanSt.createdLessonPlan.name ?
+            this.state.tLessonPlanSt.createdLessonPlan.name : '';
+
+        this.setState({
+            lessonPlanName: name,
+            dateValue: date
+        });
     },
 
     /* element selected to add to the lesson plan */
@@ -96,8 +106,7 @@ module.exports = React.createClass({
     /* on change handler for the calendar picker */
     dateChange: function(value, formattedValue) {
         this.setState({
-            dateValue: value,
-            lessonPlanDate: formattedValue
+            dateValue: value
         });
     },
 
@@ -114,11 +123,11 @@ module.exports = React.createClass({
     saveLesson: function() {
         if (this.state.lessonPlanName === '') {
             alert('Please enter a Lesson Plan Name to save this plan');
-        } else if (this.state.lessonPlanDate === null) {
+        } else if (this.state.dateValue === null) {
             alert('Please enter a Lesson Plan Date to save this plan');
         } else {
             TeacherLessonPlanActions.saveCreatedLessonPlan(this.state.lessonPlanName,
-                this.state.lessonPlanDate, this.props.history);
+                this.state.dateValue, this.props.history);
         }
     },
 
@@ -162,7 +171,8 @@ module.exports = React.createClass({
                             <div>
                                 <ControlLabel>{'LESSON PLAN NAME'}</ControlLabel>
                                 <div className='textInputWrapper'>
-                                    <FormControl type='text' onChange={this.lessonPlanName}/>
+                                    <FormControl type='text' value={this.state.lessonPlanName}
+                                        onChange={this.lessonPlanName}/>
                                 </div>
                             </div>
 
