@@ -74,6 +74,9 @@ body {
     }
 }
 
+/* framework css imports */
+@import 'components/react-big-calendar.css';
+
 /* Import specific css files */
 @import 'views/loginView.scss';
 @import 'views/teacherCreateLessonPlansView.scss';

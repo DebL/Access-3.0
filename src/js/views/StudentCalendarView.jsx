@@ -1,14 +1,30 @@
-var React = require('react');
+var React = require('react'),
+    Moment = require('moment'),
+    EventCalendar = require('react-big-calendar');
 
-/* Main page content */
+/* Teacher Calendar content */
 module.exports = React.createClass({
 
     displayName: 'StudentCalendarView',
 
+    componentWillMount: function() {
+        EventCalendar.momentLocalizer(Moment);
+    },
+
     render: function() {
         return (
-            <div id="studentDashboardView">
-                {'STUDENT CALENDAR'}
+            <div id="teacherCalendarView">
+                <div className='pageItem'>
+                    <div className='pageHeader'>{'CALENDAR'}</div>
+                </div>
+                <div className='pageItem'>
+                    <EventCalendar
+                        events={[]}
+                        startAccessor='startDate'
+                        endAccessor='endDate'
+                        timeslots={12}
+                    />
+                </div>
             </div>
         );
     }
