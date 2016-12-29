@@ -35165,7 +35165,7 @@
 	    onLoadLessonPlan: function (name, history) {
 	        for (var i = 0; i < this.state.allLessonPlans.length; i++) {
 	            var lp = this.state.allLessonPlans[i];
-	            if (name === lp.name) {
+	            if (name.toUpperCase() === lp.name.toUpperCase()) {
 	                this.state.createdLessonPlan = _.cloneDeep(lp);
 	                history.push('/teacherLessonPlans/create');
 	            }
