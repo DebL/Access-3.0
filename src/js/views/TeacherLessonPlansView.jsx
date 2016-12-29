@@ -4,7 +4,8 @@ var React = require('react'),
     ColorTable = require('ColorTable'),
     Colors = require('colors'),
     Button = require('react-bootstrap/lib/Button'),
-    TeacherLessonPlanStore = require('TeacherLessonPlanStore');
+    TeacherLessonPlanStore = require('TeacherLessonPlanStore'),
+    FaIcon = require('react-fa');
 
 /* Main page content */
 module.exports = React.createClass({
@@ -52,7 +53,14 @@ module.exports = React.createClass({
                     </div>
                 </div>
                 <div className='pageItem'>
-                    <ColorTable rows={tableRows} rowSelectedHandler={this.rowSelected}/>
+                    {tableRows.length > 0 ?
+                    	<ColorTable rows={tableRows} rowSelectedHandler={this.rowSelected}/>
+                    :
+                    	<div className='emptyView'>
+                    		<FaIcon.Icon name='file'/> 
+                    		<div className='emptyViewText'>{'NO LESSON PLANS HAVE BEEN CREATED. PLEASE CREATE A LESSON PLAN TO GET STARTED.'}</div>
+                		</div>
+                	}
                 </div>
             </div>
         );
