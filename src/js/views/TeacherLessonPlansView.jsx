@@ -5,6 +5,7 @@ var React = require('react'),
     Colors = require('colors'),
     Button = require('react-bootstrap/lib/Button'),
     TeacherLessonPlanStore = require('TeacherLessonPlanStore'),
+    _ = require('lodash'),
     FaIcon = require('react-fa');
 
 /* Main page content */
@@ -13,7 +14,7 @@ module.exports = React.createClass({
     displayName: 'TeacherLessonPlansView',
 
     mixins: [
-        Reflux.connect(TeacherLessonPlanStore, 'tLessonPlanSt')
+        Reflux.connect(TeacherLessonPlanStore, 'TeacherLessonPlanStore')
     ],
 
     /* handler for selected the create lesson button */
@@ -26,23 +27,22 @@ module.exports = React.createClass({
         TeacherLessonPlanActions.loadLessonPlan(row.title, this.props.history);
     },
 
+    componentDidMount: function() {
+        TeacherLessonPlanActions.loadLessonPlans();
+      },
+
     render: function() {
-
         /* create the table rows for the color table */
-        var tableRows = [];
-        for (var i=0; i<this.state.tLessonPlanSt.allLessonPlans.length; i++) {
-            var elem = this.state.tLessonPlanSt.allLessonPlans[i];
-            var date = Date.parse(elem.date);
-            var newD = new Date(date).toLocaleDateString();
-
-            tableRows.push({
-                title: elem.name.toUpperCase(),
-                date: newD,
-                color: Colors.colorsArray[i],
+        var lessonPlans = this.state.TeacherLessonPlanStore.allLessonPlans;
+        var tableRows = _.map(lessonPlans, function(lessonPlan, index) {
+            return {
+                title: lessonPlan.title.toUpperCase(),
+                date: lessonPlan.date,
+                color: Colors.colorsArray[index],
                 details: true,
                 selectable: true
-            });
-        }
+            };
+        });
 
         return (
             <div id="teacherLessonPlanView">

@@ -5,6 +5,7 @@ var TeacherLessonPlanActions = Reflux.createActions({
     clearCreatedLessonPlan: {},
     loadLessonPlan: {},
     saveCreatedLessonPlan: {},
+    loadLessonPlans: {}
 });
 
 module.exports = TeacherLessonPlanActions;

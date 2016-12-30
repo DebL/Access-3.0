@@ -1,5 +1,6 @@
 var Reflux = require('reflux'),
     TeacherLessonPlanActions = require('TeacherLessonPlanActions'),
+    constants = require('../helpers/constants'),
     _ = require('lodash');
 
 module.exports = Reflux.createStore({
@@ -14,9 +15,47 @@ module.exports = Reflux.createStore({
             plan: []
         }
     },
-
     getInitialState: function() {
         return this.state;
+    },
+    /**
+     * Loads teacher lesson plans from database
+     */
+    onLoadLessonPlans: function() {
+        var docClient = new AWS.DynamoDB.DocumentClient();
+        var teacherId = "Katie"; // we will set this as a variable once we have gmail authentication
+        // query the lesson plans table for all lesson plans for this teacher
+        var dbParams = {
+            TableName: constants.DBConstants.LESSON_PLANS, 
+            KeyConditionExpression: "#teacherId = :teacherId",
+            ExpressionAttributeNames:{
+                "#teacherId": "teacherId"
+            },
+            ExpressionAttributeValues: {
+                ":teacherId": teacherId
+            }
+        };
+
+        docClient.query(dbParams, function(err, data) {
+            if (err) {
+                console.log("Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2));
+            } else {
+                var items = data.Items;
+
+                this.state.allLessonPlans = _.map(items, function(item) {
+                    var date = Date.parse(item.lessonDate);
+                    var lessonName = item.lessonName || '';
+                    return {
+                        title: lessonName,
+                        date: new Date(date).toLocaleDateString()
+                    };
+                });
+                
+                console.log("GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2));
+                this.trigger(this.state);
+            }
+        }.bind(this));
+        
     },
 
     /* callback handler to add a lesson plan

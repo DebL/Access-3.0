@@ -49,6 +49,12 @@ module.exports = React.createClass({
         navClass = this.props.location.pathname === DEFAULT_ROUTE_LOGIN ? '' : navClass;
         var pages = this.getPages();
 
+        AWS.config.update({ region: "us-west-2" });
+        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: "us-west-2:ff231761-9473-4a45-aea7-fa4c3d401336",
+            RoleArn: "arn:aws:iam::127339119267:role/Cognito_DynamoPoolUnauth"
+        });
+
         return (
             <div>
                 {this.props.location.pathname !== DEFAULT_ROUTE_LOGIN ? <Mast /> : null}
