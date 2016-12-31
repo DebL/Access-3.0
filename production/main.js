@@ -76823,8 +76823,10 @@
 	            lessonPlanId: 0,
 	            teacherId: null
 	        },
-	        nextAvailableLessonPlanId: 0
+	        nextAvailableLessonPlanId: 0,
+	        isEditingPlan: false
 	    },
+
 	    getInitialState: function () {
 	        return this.state;
 	    },
@@ -76906,6 +76908,7 @@
 	        };
 
 	        this.state.nextAvailableLessonPlanId = this.state.allLessonPlans.count + 1;
+	        this.state.isEditingPlan = false;
 	        this.trigger(this.state);
 	    },
 
@@ -76931,6 +76934,7 @@
 	                var plan = _.cloneDeep(lp);
 	                this.state.createdLessonPlan = plan;
 	                this.state.nextAvailableLessonPlanId = plan.lessonPlanId;
+	                this.state.isEditingPlan = true;
 	                history.push('/teacherLessonPlans/create');
 	            }
 	        }
@@ -77311,7 +77315,7 @@
 	                                'INTERACTIVE CONTENT'
 	                            )
 	                        ),
-	                        React.createElement(
+	                        this.state.tLessonPlanSt.isEditingPlan ? React.createElement(
 	                            'div',
 	                            { id: 'pageFooter', className: 'pageItem' },
 	                            React.createElement(
@@ -77319,7 +77323,7 @@
 	                                { bsStyle: 'danger', onClick: this.deleteLesson },
 	                                'DELETE LESSON'
 	                            )
-	                        )
+	                        ) : null
 	                    ),
 	                    React.createElement(
 	                        Col,

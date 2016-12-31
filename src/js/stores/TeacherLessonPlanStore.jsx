@@ -16,8 +16,10 @@ module.exports = Reflux.createStore({
             lessonPlanId: 0,
             teacherId: null
         },
-        nextAvailableLessonPlanId: 0
+        nextAvailableLessonPlanId: 0,
+        isEditingPlan: false
     },
+
     getInitialState: function() {
         return this.state;
     },
@@ -99,6 +101,7 @@ module.exports = Reflux.createStore({
         };
 
         this.state.nextAvailableLessonPlanId = this.state.allLessonPlans.count + 1;
+        this.state.isEditingPlan = false;
         this.trigger(this.state);
     },
 
@@ -124,6 +127,7 @@ module.exports = Reflux.createStore({
                 var plan = _.cloneDeep(lp);
                 this.state.createdLessonPlan = plan;
                 this.state.nextAvailableLessonPlanId = plan.lessonPlanId;
+                this.state.isEditingPlan = true;
                 history.push('/teacherLessonPlans/create');
             }
         }

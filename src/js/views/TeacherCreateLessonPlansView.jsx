@@ -253,9 +253,11 @@ module.exports = React.createClass({
                             <div className='pageHeader'>{'INTERACTIVE CONTENT'}</div>
                         </div>
 
-                        <div id='pageFooter' className='pageItem'>
-                            <Button bsStyle="danger" onClick={this.deleteLesson}>{'DELETE LESSON'}</Button>
-                        </div>
+                        {this.state.tLessonPlanSt.isEditingPlan ?
+                            <div id='pageFooter' className='pageItem'>
+                                <Button bsStyle="danger" onClick={this.deleteLesson}>{'DELETE LESSON'}</Button>
+                            </div>
+                        : null}
                     </Col>
                     <Col xs={8} md={3}>
                         <div id='rightPanelContent'>
