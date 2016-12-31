@@ -12,6 +12,7 @@ var React = require('react'),
     StudentCalendarView = require('StudentCalendarView'),
     TeacherLessonPlansView = require('TeacherLessonPlansView'),
     TeacherCreateLessonPlansView = require('TeacherCreateLessonPlansView'),
+    TeacherCreateHomeworkView = require('TeacherCreateHomeworkView'),
     TeacherCalendarView = require('TeacherCalendarView'),
     TeacherHomeworkView = require('TeacherHomeworkView'),
 	
@@ -30,6 +31,7 @@ ReactDom.render((
             <Route path="teacherLessonPlans/create" components={{ main: TeacherCreateLessonPlansView }}/>
             <Route path="teacherCalendar" components={{ main: TeacherCalendarView }}/>
             <Route path="teacherHomework" components={{ main: TeacherHomeworkView }}/>
+            <Route path="teacherHomework/create" components={{ main: TeacherCreateHomeworkView }}/>
         </Route>
     </Router>
 ), document.getElementById('appContent'));

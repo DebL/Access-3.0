@@ -442,9 +442,10 @@
 	    StudentCalendarView = __webpack_require__(379),
 	    TeacherLessonPlansView = __webpack_require__(640),
 	    TeacherCreateLessonPlansView = __webpack_require__(647),
-	    TeacherCalendarView = __webpack_require__(742),
-	    TeacherHomeworkView = __webpack_require__(743),
-	    App = React.createFactory(__webpack_require__(744));
+	    TeacherCreateHomeworkView = __webpack_require__(742),
+	    TeacherCalendarView = __webpack_require__(745),
+	    TeacherHomeworkView = __webpack_require__(746),
+	    App = React.createFactory(__webpack_require__(747));
 
 	ReactDom.render(React.createElement(
 	    Router,
@@ -461,7 +462,8 @@
 	        React.createElement(Route, { path: 'teacherLessonPlans', components: { main: TeacherLessonPlansView } }),
 	        React.createElement(Route, { path: 'teacherLessonPlans/create', components: { main: TeacherCreateLessonPlansView } }),
 	        React.createElement(Route, { path: 'teacherCalendar', components: { main: TeacherCalendarView } }),
-	        React.createElement(Route, { path: 'teacherHomework', components: { main: TeacherHomeworkView } })
+	        React.createElement(Route, { path: 'teacherHomework', components: { main: TeacherHomeworkView } }),
+	        React.createElement(Route, { path: 'teacherHomework/create', components: { main: TeacherCreateHomeworkView } })
 	    )
 	), document.getElementById('appContent'));
 
@@ -77017,7 +77019,8 @@
 /***/ function(module, exports) {
 
 	var DBConstants = {
-		LESSON_PLANS: 'LessonPlans' // teacher lesson plans table
+		LESSON_PLANS: 'LessonPlans', // teacher lesson plans table
+		HOMEWORK: 'Homework' // teacher homework table
 	};
 
 	module.exports = {
@@ -89250,6 +89253,182 @@
 /* 742 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* view for the teachers list of currently created lesson plans */
+	var React = __webpack_require__(9),
+	    Reflux = __webpack_require__(357),
+	    ColorTable = __webpack_require__(641),
+	    Colors = __webpack_require__(643),
+	    Button = __webpack_require__(333),
+	    TeacherHomeworkStore = __webpack_require__(743),
+	    _ = __webpack_require__(642),
+	    FaIcon = __webpack_require__(345);
+
+	/* Main page content */
+	module.exports = React.createClass({
+
+	    displayName: 'TeacherLessonPlansView',
+
+	    mixins: [Reflux.connect(TeacherHomeworkStore, 'TeacherHomeworkStore')],
+
+	    /* handler for selected the create homework button */
+	    createLesson: function () {
+	        this.props.history.push('/teacherHomework/create');
+	    },
+
+	    /* callback handler for a table row being selected */
+	    rowSelected: function (row) {
+	        TeacherLessonPlanActions.loadLessonPlan(row.title, this.props.history);
+	    },
+
+	    componentWillMount: function () {
+	        TeacherLessonPlanActions.loadLessonPlans();
+	    },
+
+	    render: function () {
+	        /* create the table rows for the color table */
+	        var lessonPlans = this.state.TeacherHomeworkStore.allLessonPlans;
+	        var tableRows = _.map(lessonPlans, function (lessonPlan, index) {
+	            return {
+	                title: lessonPlan.title.toUpperCase(),
+	                date: new Date(lessonPlan.date).toLocaleDateString(),
+	                color: Colors.colorsArray[index % Colors.colorsArray.length],
+	                details: true,
+	                selectable: true
+	            };
+	        });
+
+	        return React.createElement(
+	            'div',
+	            { id: 'teacherLessonPlanView' },
+	            React.createElement(
+	                'div',
+	                { className: 'pageItem' },
+	                React.createElement(
+	                    'div',
+	                    { id: 'titleHeader' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'pageHeader' },
+	                        'MY LESSON PLANS'
+	                    ),
+	                    React.createElement(
+	                        Button,
+	                        { bsStyle: 'info', onClick: this.createLesson },
+	                        'CREATE LESSON'
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'pageItem' },
+	                tableRows.length > 0 ? React.createElement(ColorTable, { rows: tableRows, rowSelectedHandler: this.rowSelected }) : React.createElement(
+	                    'div',
+	                    { className: 'emptyView' },
+	                    React.createElement(FaIcon.Icon, { name: 'file' }),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'emptyViewText' },
+	                        'NO LESSON PLANS HAVE BEEN CREATED. PLEASE CREATE A LESSON PLAN TO GET STARTED.'
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+/***/ },
+/* 743 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Reflux = __webpack_require__(357),
+	    TeacherHomeworkActions = __webpack_require__(744),
+	    constants = __webpack_require__(646),
+	    _ = __webpack_require__(642);
+
+	module.exports = Reflux.createStore({
+
+	    listenables: [TeacherHomeworkActions],
+
+	    state: {
+	        allHomework: [],
+	        createdHomework: {
+	            title: null,
+	            date: null,
+	            plan: [],
+	            homeworkId: 0,
+	            teacherId: null
+	        }
+	    },
+	    getInitialState: function () {
+	        return this.state;
+	    },
+	    /**
+	     * Loads teacher homework from database
+	     */
+	    onLoadHomeworkCompleted: function (data) {
+	        var items = data.Items;
+
+	        this.state.allHomework = _.map(items, function (item) {
+	            var dueDate = item.dueDate;
+	            var homeworkTitle = item.title || '';
+	            var id = item.homeworkId || -1;
+	            var teacherId = item.teacherId || '';
+
+	            return {
+	                title: homeworkTitle,
+	                date: dueDate,
+	                homeworkId: id,
+	                teacherId: teacherId
+	            };
+	        });
+
+	        this.trigger(this.state);
+	    }
+	});
+
+/***/ },
+/* 744 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Reflux = __webpack_require__(357),
+	    constants = __webpack_require__(646);
+
+	var TeacherHomeworkActions = Reflux.createActions({
+	    loadHomework: { asyncResult: true }
+	});
+
+	/* Action to get all lesson plans */
+	TeacherHomeworkActions.loadHomework.listen(function () {
+	    var docClient = new AWS.DynamoDB.DocumentClient();
+	    var teacherId = "Katie"; // we will set this as a variable once we have gmail authentication
+	    // query the lesson plans table for all lesson plans for this teacher
+
+	    var dbParams = {
+	        TableName: constants.DBConstants.HOMEWORK,
+	        KeyConditionExpression: "#teacherId = :teacherId",
+	        ExpressionAttributeNames: {
+	            "#teacherId": "teacherId"
+	        },
+	        ExpressionAttributeValues: {
+	            ":teacherId": teacherId
+	        }
+	    };
+
+	    docClient.query(dbParams, function (err, data) {
+	        if (err) {
+	            console.log("Unable to query items: " + "\n" + JSON.stringify(err, undefined, 2));
+	        } else {
+	            this.completed(data);
+	        }
+	    }.bind(this));
+	});
+
+	module.exports = TeacherHomeworkActions;
+
+/***/ },
+/* 745 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var React = __webpack_require__(9),
 	    Moment = __webpack_require__(380),
 	    EventCalendar = __webpack_require__(491);
@@ -89291,20 +89470,48 @@
 	});
 
 /***/ },
-/* 743 */
+/* 746 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* view for the teachers list of currently created lesson plans */
 	var React = __webpack_require__(9),
 	    Reflux = __webpack_require__(357),
-	    FaIcon = __webpack_require__(345);
+	    FaIcon = __webpack_require__(345),
+	    ColorTable = __webpack_require__(641),
+	    Colors = __webpack_require__(643),
+	    Button = __webpack_require__(333),
+	    TeacherHomeworkActions = __webpack_require__(744),
+	    TeacherHomeworkStore = __webpack_require__(743);
 
 	/* Main page content */
 	module.exports = React.createClass({
 
 	    displayName: 'TeacherHomeworkView',
+	    mixins: [Reflux.connect(TeacherHomeworkStore, 'TeacherHomeworkStore')],
+	    /* handler for selected the create homework button */
+	    createHomework: function () {
+	        this.props.history.push('/teacherHomework/create');
+	    },
+
+	    /* callback handler for a table row being selected */
+	    rowSelected: function (row) {},
+
+	    componentWillMount: function () {
+	        TeacherHomeworkActions.loadHomework();
+	    },
 
 	    render: function () {
+	        /* create the table rows for the color table */
+	        var homework = this.state.TeacherHomeworkStore.allHomework;
+	        var tableRows = _.map(homework, function (hw, index) {
+	            return {
+	                title: hw.title.toUpperCase(),
+	                date: 'Due: ' + new Date(hw.date).toLocaleDateString(),
+	                color: Colors.colorsArray[index % Colors.colorsArray.length],
+	                details: true,
+	                selectable: true
+	            };
+	        });
 	        return React.createElement(
 	            'div',
 	            { id: 'teacherLessonPlanView' },
@@ -89321,7 +89528,7 @@
 	                    ),
 	                    React.createElement(
 	                        Button,
-	                        { bsStyle: 'info', onClick: this.createLesson },
+	                        { bsStyle: 'info', onClick: this.createHomework },
 	                        'CREATE HOMEWORK'
 	                    )
 	                )
@@ -89331,12 +89538,16 @@
 	                { className: 'pageItem' },
 	                React.createElement(
 	                    'div',
-	                    { className: 'emptyView' },
-	                    React.createElement(FaIcon.Icon, { name: 'pencil' }),
-	                    React.createElement(
+	                    { className: 'pageItem' },
+	                    tableRows.length > 0 ? React.createElement(ColorTable, { rows: tableRows, rowSelectedHandler: this.rowSelected }) : React.createElement(
 	                        'div',
-	                        { className: 'emptyViewText' },
-	                        'NO HOMEWORKS HAVE BEEN CREATED. PLEASE CREATE A HOMEWORK TO GET STARTED.'
+	                        { className: 'emptyView' },
+	                        React.createElement(FaIcon.Icon, { name: 'pencil' }),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'emptyViewText' },
+	                            'NO HOMEWORKS HAVE BEEN CREATED. PLEASE CREATE A HOMEWORK TO GET STARTED.'
+	                        )
 	                    )
 	                )
 	            )
@@ -89345,17 +89556,17 @@
 	});
 
 /***/ },
-/* 744 */
+/* 747 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* Main React App Component */
 	var React = __webpack_require__(9),
 	    Router = __webpack_require__(180),
 	    Reflux = __webpack_require__(357),
-	    NavStore = __webpack_require__(745),
-	    UserStore = __webpack_require__(747),
-	    Mast = __webpack_require__(748),
-	    NavPane = __webpack_require__(749);
+	    NavStore = __webpack_require__(748),
+	    UserStore = __webpack_require__(750),
+	    Mast = __webpack_require__(751),
+	    NavPane = __webpack_require__(752);
 
 	module.exports = React.createClass({
 
@@ -89411,11 +89622,11 @@
 	});
 
 /***/ },
-/* 745 */
+/* 748 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Reflux = __webpack_require__(357),
-	    NavActions = __webpack_require__(746);
+	    NavActions = __webpack_require__(749);
 
 	module.exports = Reflux.createStore({
 
@@ -89437,7 +89648,7 @@
 	});
 
 /***/ },
-/* 746 */
+/* 749 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Reflux = __webpack_require__(357);
@@ -89449,7 +89660,7 @@
 	module.exports = NavActions;
 
 /***/ },
-/* 747 */
+/* 750 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Reflux = __webpack_require__(357),
@@ -89474,12 +89685,12 @@
 	});
 
 /***/ },
-/* 748 */
+/* 751 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(9),
 	    Reflux = __webpack_require__(357),
-	    NavActions = __webpack_require__(746),
+	    NavActions = __webpack_require__(749),
 	    FaIcon = __webpack_require__(345);
 
 	module.exports = React.createClass({
@@ -89532,13 +89743,13 @@
 	});
 
 /***/ },
-/* 749 */
+/* 752 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(9),
 	    Router = __webpack_require__(180),
 	    Reflux = __webpack_require__(357),
-	    NavStore = __webpack_require__(745),
+	    NavStore = __webpack_require__(748),
 	    Link = Router.Link,
 	    PropTypes = React.PropTypes,
 	    FaIcon = __webpack_require__(345);
