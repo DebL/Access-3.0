@@ -42,16 +42,21 @@ module.exports = React.createClass({
          * in componentDidMount - might want to find a better
          * way to do this
          */
+
         var d = new Date();
         var date = this.state.tLessonPlanSt.createdLessonPlan.date ?
             this.state.tLessonPlanSt.createdLessonPlan.date : d.toISOString();
-        var name = this.state.tLessonPlanSt.createdLessonPlan.name ?
-            this.state.tLessonPlanSt.createdLessonPlan.name : '';
+        var name = this.state.tLessonPlanSt.createdLessonPlan.title ?
+            this.state.tLessonPlanSt.createdLessonPlan.title : '';
 
         this.setState({
             lessonPlanName: name,
             dateValue: date
         });
+    },
+
+    componentWillUnmount: function() {
+        TeacherLessonPlanActions.clearCreatedLessonPlanDeep();
     },
 
     /* element selected to add to the lesson plan */
@@ -228,7 +233,7 @@ module.exports = React.createClass({
                                 return (
                                     <div className='rp__contentItem' key={i}>
                                         <div className='number'>{(i + 1)}</div>
-                                        <div className='title'>{item.title}</div>
+                                        <div className='title'>{item.title.toUpperCase()}</div>
                                         <div className='type'>
                                             <span className='typeText'>{item.type.toUpperCase()}</span>
                                             <span>{this.getIcon(item.type)}</span>

@@ -443,7 +443,8 @@
 	    TeacherLessonPlansView = __webpack_require__(640),
 	    TeacherCreateLessonPlansView = __webpack_require__(647),
 	    TeacherCalendarView = __webpack_require__(742),
-	    App = React.createFactory(__webpack_require__(743));
+	    TeacherHomeworkView = __webpack_require__(743),
+	    App = React.createFactory(__webpack_require__(744));
 
 	ReactDom.render(React.createElement(
 	    Router,
@@ -459,7 +460,8 @@
 	        React.createElement(Route, { path: 'studentCalendar', components: { main: StudentCalendarView } }),
 	        React.createElement(Route, { path: 'teacherLessonPlans', components: { main: TeacherLessonPlansView } }),
 	        React.createElement(Route, { path: 'teacherLessonPlans/create', components: { main: TeacherCreateLessonPlansView } }),
-	        React.createElement(Route, { path: 'teacherCalendar', components: { main: TeacherCalendarView } })
+	        React.createElement(Route, { path: 'teacherCalendar', components: { main: TeacherCalendarView } }),
+	        React.createElement(Route, { path: 'teacherHomework', components: { main: TeacherHomeworkView } })
 	    )
 	), document.getElementById('appContent'));
 
@@ -59583,7 +59585,7 @@
 	        TeacherLessonPlanActions.loadLessonPlan(row.title, this.props.history);
 	    },
 
-	    componentDidMount: function () {
+	    componentWillMount: function () {
 	        TeacherLessonPlanActions.loadLessonPlans();
 	    },
 
@@ -59593,7 +59595,7 @@
 	        var tableRows = _.map(lessonPlans, function (lessonPlan, index) {
 	            return {
 	                title: lessonPlan.title.toUpperCase(),
-	                date: lessonPlan.date,
+	                date: new Date(lessonPlan.date).toLocaleDateString(),
 	                color: Colors.colorsArray[index],
 	                details: true,
 	                selectable: true
@@ -59746,7 +59748,7 @@
 	    state: {
 	        allLessonPlans: [],
 	        createdLessonPlan: {
-	            name: null,
+	            title: null,
 	            date: null,
 	            plan: []
 	        }
@@ -59760,6 +59762,7 @@
 	    onLoadLessonPlans: function () {
 	        var docClient = new AWS.DynamoDB.DocumentClient();
 	        var teacherId = "Katie"; // we will set this as a variable once we have gmail authentication
+	        // query the lesson plans table for all lesson plans for this teacher
 	        var dbParams = {
 	            TableName: constants.DBConstants.LESSON_PLANS,
 	            KeyConditionExpression: "#teacherId = :teacherId",
@@ -59775,18 +59778,20 @@
 	            if (err) {
 	                console.log("Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2));
 	            } else {
-	                var items = data.Items ? data.Items : data.Item;
+	                var items = data.Items;
 
 	                this.state.allLessonPlans = _.map(items, function (item) {
-	                    var date = Date.parse(item.lessonDate);
+	                    var date = item.lessonDate;
 	                    var lessonName = item.lessonName || '';
+	                    var plan = item.plan || [];
+
 	                    return {
 	                        title: lessonName,
-	                        date: new Date(date).toLocaleDateString()
+	                        date: date,
+	                        plan: plan
 	                    };
 	                });
 
-	                console.log("GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2));
 	                this.trigger(this.state);
 	            }
 	        }.bind(this));
@@ -59829,6 +59834,17 @@
 	        this.trigger(this.state);
 	    },
 
+	    /* clear everything for created lesson plan not just the plan */
+	    onClearCreatedLessonPlanDeep: function () {
+	        this.state.createdLessonPlan = {
+	            title: null,
+	            date: null,
+	            plan: []
+	        };
+
+	        this.trigger(this.state);
+	    },
+
 	    /* save the current lesson plan in the store */
 	    onSaveCreatedLessonPlan: function (name, date, history) {
 
@@ -59840,13 +59856,13 @@
 	         * of creating a new one
 	         */
 
-	        this.state.createdLessonPlan.name = name;
+	        this.state.createdLessonPlan.title = name;
 	        this.state.createdLessonPlan.date = date;
 
 	        var plan = _.cloneDeep(this.state.createdLessonPlan);
 	        this.state.allLessonPlans.push(plan);
 
-	        this.state.createdLessonPlan.name = null;
+	        this.state.createdLessonPlan.title = null;
 	        this.state.createdLessonPlan.date = null;
 	        this.state.createdLessonPlan.plan = [];
 	        this.trigger(this.state);
@@ -59863,7 +59879,7 @@
 	    onLoadLessonPlan: function (name, history) {
 	        for (var i = 0; i < this.state.allLessonPlans.length; i++) {
 	            var lp = this.state.allLessonPlans[i];
-	            if (name.toUpperCase() === lp.name.toUpperCase()) {
+	            if (name.toUpperCase() === lp.title.toUpperCase()) {
 	                this.state.createdLessonPlan = _.cloneDeep(lp);
 	                history.push('/teacherLessonPlans/create');
 	            }
@@ -59880,6 +59896,7 @@
 	var TeacherLessonPlanActions = Reflux.createActions({
 	    addLessonPlanItem: {},
 	    clearCreatedLessonPlan: {},
+	    clearCreatedLessonPlanDeep: {},
 	    loadLessonPlan: {},
 	    saveCreatedLessonPlan: {},
 	    loadLessonPlans: {}
@@ -77005,14 +77022,19 @@
 	         * in componentDidMount - might want to find a better
 	         * way to do this
 	         */
+
 	        var d = new Date();
 	        var date = this.state.tLessonPlanSt.createdLessonPlan.date ? this.state.tLessonPlanSt.createdLessonPlan.date : d.toISOString();
-	        var name = this.state.tLessonPlanSt.createdLessonPlan.name ? this.state.tLessonPlanSt.createdLessonPlan.name : '';
+	        var name = this.state.tLessonPlanSt.createdLessonPlan.title ? this.state.tLessonPlanSt.createdLessonPlan.title : '';
 
 	        this.setState({
 	            lessonPlanName: name,
 	            dateValue: date
 	        });
+	    },
+
+	    componentWillUnmount: function () {
+	        TeacherLessonPlanActions.clearCreatedLessonPlanDeep();
 	    },
 
 	    /* element selected to add to the lesson plan */
@@ -77254,7 +77276,7 @@
 	                                    React.createElement(
 	                                        'div',
 	                                        { className: 'title' },
-	                                        item.title
+	                                        item.title.toUpperCase()
 	                                    ),
 	                                    React.createElement(
 	                                        'div',
@@ -89200,14 +89222,68 @@
 /* 743 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* view for the teachers list of currently created lesson plans */
+	var React = __webpack_require__(9),
+	    Reflux = __webpack_require__(357),
+	    FaIcon = __webpack_require__(345);
+
+	/* Main page content */
+	module.exports = React.createClass({
+
+	    displayName: 'TeacherHomeworkView',
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { id: 'teacherLessonPlanView' },
+	            React.createElement(
+	                'div',
+	                { className: 'pageItem' },
+	                React.createElement(
+	                    'div',
+	                    { id: 'titleHeader' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'pageHeader' },
+	                        'HOMEWORK'
+	                    ),
+	                    React.createElement(
+	                        Button,
+	                        { bsStyle: 'info', onClick: this.createLesson },
+	                        'CREATE HOMEWORK'
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'pageItem' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'emptyView' },
+	                    React.createElement(FaIcon.Icon, { name: 'pencil' }),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'emptyViewText' },
+	                        'NO HOMEWORKS HAVE BEEN CREATED. PLEASE CREATE A HOMEWORK TO GET STARTED.'
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+/***/ },
+/* 744 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* Main React App Component */
 	var React = __webpack_require__(9),
 	    Router = __webpack_require__(180),
 	    Reflux = __webpack_require__(357),
-	    NavStore = __webpack_require__(744),
-	    UserStore = __webpack_require__(746),
-	    Mast = __webpack_require__(747),
-	    NavPane = __webpack_require__(748);
+	    NavStore = __webpack_require__(745),
+	    UserStore = __webpack_require__(747),
+	    Mast = __webpack_require__(748),
+	    NavPane = __webpack_require__(749);
 
 	module.exports = React.createClass({
 
@@ -89263,11 +89339,11 @@
 	});
 
 /***/ },
-/* 744 */
+/* 745 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Reflux = __webpack_require__(357),
-	    NavActions = __webpack_require__(745);
+	    NavActions = __webpack_require__(746);
 
 	module.exports = Reflux.createStore({
 
@@ -89289,7 +89365,7 @@
 	});
 
 /***/ },
-/* 745 */
+/* 746 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Reflux = __webpack_require__(357);
@@ -89301,7 +89377,7 @@
 	module.exports = NavActions;
 
 /***/ },
-/* 746 */
+/* 747 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Reflux = __webpack_require__(357),
@@ -89326,12 +89402,12 @@
 	});
 
 /***/ },
-/* 747 */
+/* 748 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(9),
 	    Reflux = __webpack_require__(357),
-	    NavActions = __webpack_require__(745),
+	    NavActions = __webpack_require__(746),
 	    FaIcon = __webpack_require__(345);
 
 	module.exports = React.createClass({
@@ -89384,13 +89460,13 @@
 	});
 
 /***/ },
-/* 748 */
+/* 749 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(9),
 	    Router = __webpack_require__(180),
 	    Reflux = __webpack_require__(357),
-	    NavStore = __webpack_require__(744),
+	    NavStore = __webpack_require__(745),
 	    Link = Router.Link,
 	    PropTypes = React.PropTypes,
 	    FaIcon = __webpack_require__(345);

@@ -10,7 +10,7 @@ module.exports = Reflux.createStore({
     state: {
         allLessonPlans: [],
         createdLessonPlan: {
-            name: null,
+            title: null,
             date: null,
             plan: []
         }
@@ -43,19 +43,20 @@ module.exports = Reflux.createStore({
                 var items = data.Items;
 
                 this.state.allLessonPlans = _.map(items, function(item) {
-                    var date = Date.parse(item.lessonDate);
+                    var date = item.lessonDate;
                     var lessonName = item.lessonName || '';
+                    var plan = item.plan || [];
+
                     return {
                         title: lessonName,
-                        date: new Date(date).toLocaleDateString()
+                        date: date,
+                        plan: plan
                     };
                 });
-                
-                console.log("GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2));
+    
                 this.trigger(this.state);
             }
         }.bind(this));
-        
     },
 
     /* callback handler to add a lesson plan
@@ -95,6 +96,18 @@ module.exports = Reflux.createStore({
         this.trigger(this.state);
     },
 
+    /* clear everything for created lesson plan not just the plan */
+    onClearCreatedLessonPlanDeep: function() {
+        this.state.createdLessonPlan = {
+            title: null,
+            date: null,
+            plan: []
+        };
+
+        
+        this.trigger(this.state);
+    },
+
     /* save the current lesson plan in the store */
     onSaveCreatedLessonPlan: function(name, date, history) {
 
@@ -106,13 +119,13 @@ module.exports = Reflux.createStore({
          * of creating a new one
          */
 
-        this.state.createdLessonPlan.name = name;
+        this.state.createdLessonPlan.title = name;
         this.state.createdLessonPlan.date = date;
 
         var plan = _.cloneDeep(this.state.createdLessonPlan);
         this.state.allLessonPlans.push(plan);
 
-        this.state.createdLessonPlan.name = null;
+        this.state.createdLessonPlan.title = null;
         this.state.createdLessonPlan.date = null;
         this.state.createdLessonPlan.plan = [];
         this.trigger(this.state);
@@ -129,7 +142,7 @@ module.exports = Reflux.createStore({
     onLoadLessonPlan: function(name, history) {
         for (var i=0; i<this.state.allLessonPlans.length; i++) {
             var lp = this.state.allLessonPlans[i];
-            if (name.toUpperCase() === lp.name.toUpperCase()) {
+            if (name.toUpperCase() === lp.title.toUpperCase()) {
                 this.state.createdLessonPlan = _.cloneDeep(lp);
                 history.push('/teacherLessonPlans/create');
             }

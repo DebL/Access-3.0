@@ -27,7 +27,7 @@ module.exports = React.createClass({
         TeacherLessonPlanActions.loadLessonPlan(row.title, this.props.history);
     },
 
-    componentDidMount: function() {
+    componentWillMount: function() {
         TeacherLessonPlanActions.loadLessonPlans();
       },
 
@@ -37,7 +37,7 @@ module.exports = React.createClass({
         var tableRows = _.map(lessonPlans, function(lessonPlan, index) {
             return {
                 title: lessonPlan.title.toUpperCase(),
-                date: lessonPlan.date,
+                date: new Date(lessonPlan.date).toLocaleDateString(),
                 color: Colors.colorsArray[index],
                 details: true,
                 selectable: true
