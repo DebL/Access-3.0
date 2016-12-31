@@ -15,6 +15,14 @@
         border-bottom: 1px solid lightgray;
     }
 
+    #pageFooter {
+        border-top: 1px solid lightgray;
+
+        .btn {
+            float: right;
+        }
+    }
+
     .textInputWrapper {
         width: 300px;
     }

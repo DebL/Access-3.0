@@ -12,8 +12,11 @@ module.exports = Reflux.createStore({
         createdLessonPlan: {
             title: null,
             date: null,
-            plan: []
-        }
+            plan: [],
+            lessonPlanId: 0,
+            teacherId: null
+        },
+        nextAvailableLessonPlanId: 0
     },
     getInitialState: function() {
         return this.state;
@@ -21,42 +24,33 @@ module.exports = Reflux.createStore({
     /**
      * Loads teacher lesson plans from database
      */
-    onLoadLessonPlans: function() {
-        var docClient = new AWS.DynamoDB.DocumentClient();
-        var teacherId = "Katie"; // we will set this as a variable once we have gmail authentication
-        // query the lesson plans table for all lesson plans for this teacher
-        var dbParams = {
-            TableName: constants.DBConstants.LESSON_PLANS, 
-            KeyConditionExpression: "#teacherId = :teacherId",
-            ExpressionAttributeNames:{
-                "#teacherId": "teacherId"
-            },
-            ExpressionAttributeValues: {
-                ":teacherId": teacherId
-            }
-        };
+    onLoadLessonPlansCompleted: function(data) {
+        var items = data.Items;
 
-        docClient.query(dbParams, function(err, data) {
-            if (err) {
-                console.log("Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2));
-            } else {
-                var items = data.Items;
+        this.state.allLessonPlans = _.map(items, function(item) {
+            var date = item.lessonDate;
+            var lessonName = item.lessonName || '';
+            var plan = item.plan || [];
+            var id = item.lessonPlanId || -1;
+            var teacherId = item.teacherId || '';
 
-                this.state.allLessonPlans = _.map(items, function(item) {
-                    var date = item.lessonDate;
-                    var lessonName = item.lessonName || '';
-                    var plan = item.plan || [];
+            return {
+                title: lessonName,
+                date: date,
+                plan: plan,
+                lessonPlanId: id,
+                teacherId: teacherId
+            };
+        });
 
-                    return {
-                        title: lessonName,
-                        date: date,
-                        plan: plan
-                    };
-                });
-    
-                this.trigger(this.state);
-            }
-        }.bind(this));
+        /* update the next available id for lesson plans. This assumes all
+         * lesson plans run numerically starting at 1. If they don't then
+         * this will be a problem. So we want the next available to be
+         * one more than the current count.
+         */
+        this.state.nextAvailableLessonPlanId = items.length + 1;
+
+        this.trigger(this.state);
     },
 
     /* callback handler to add a lesson plan
@@ -104,32 +98,16 @@ module.exports = Reflux.createStore({
             plan: []
         };
 
-        
+        this.state.nextAvailableLessonPlanId = this.state.allLessonPlans.count + 1;
         this.trigger(this.state);
     },
 
     /* save the current lesson plan in the store */
-    onSaveCreatedLessonPlan: function(name, date, history) {
+    onSaveCreatedLessonPlanCompleted: function(data, history) {
+        history.push('/teacherLessonPlans');
+    },
 
-        /* TODO - right now anything gets added
-         * as a lesson plan even if you are editing
-         * an existing plan and re saving it it gets
-         * added as a new one. Need to check if the one
-         * being edited already exists and update it instead
-         * of creating a new one
-         */
-
-        this.state.createdLessonPlan.title = name;
-        this.state.createdLessonPlan.date = date;
-
-        var plan = _.cloneDeep(this.state.createdLessonPlan);
-        this.state.allLessonPlans.push(plan);
-
-        this.state.createdLessonPlan.title = null;
-        this.state.createdLessonPlan.date = null;
-        this.state.createdLessonPlan.plan = [];
-        this.trigger(this.state);
-
+    onDeleteLessonPlanCompleted: function(data, history) {
         history.push('/teacherLessonPlans');
     },
 
@@ -143,7 +121,9 @@ module.exports = Reflux.createStore({
         for (var i=0; i<this.state.allLessonPlans.length; i++) {
             var lp = this.state.allLessonPlans[i];
             if (name.toUpperCase() === lp.title.toUpperCase()) {
-                this.state.createdLessonPlan = _.cloneDeep(lp);
+                var plan = _.cloneDeep(lp);
+                this.state.createdLessonPlan = plan;
+                this.state.nextAvailableLessonPlanId = plan.lessonPlanId;
                 history.push('/teacherLessonPlans/create');
             }
         }

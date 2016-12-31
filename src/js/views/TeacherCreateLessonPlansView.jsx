@@ -13,6 +13,7 @@ var React = require('react'),
     Col = require('react-bootstrap/lib/Col'),
     Button = require('react-bootstrap/lib/Button'),
     FaIcon = require('react-fa'),
+    constants = require('../helpers/constants'),
     DatePicker = require('react-bootstrap-date-picker'),
     LessonPlanContentStore = require('LessonPlanContentStore'),
     TeacherLessonPlanActions = require('TeacherLessonPlanActions'),
@@ -131,8 +132,20 @@ module.exports = React.createClass({
         } else if (this.state.dateValue === null) {
             alert('Please enter a Lesson Plan Date to save this plan');
         } else {
-            TeacherLessonPlanActions.saveCreatedLessonPlan(this.state.lessonPlanName,
-                this.state.dateValue, this.props.history);
+            var plan = _.cloneDeep(this.state.tLessonPlanSt.createdLessonPlan);
+
+            var itemParams = {
+                TableName: constants.DBConstants.LESSON_PLANS,
+                Item: {
+                    teacherId: "Katie",
+                    lessonPlanId: String(this.state.nextAvailableLessonPlanId),
+                    lessonDate: this.state.dateValue,
+                    lessonName: this.state.lessonPlanName,
+                    plan: plan.plan
+                }
+            };
+
+            TeacherLessonPlanActions.saveCreatedLessonPlan(itemParams, this.props.history);
         }
     },
 
@@ -146,6 +159,20 @@ module.exports = React.createClass({
         }
 
         return false;
+    },
+
+    deleteLesson: function() {
+        var teacherId = this.state.tLessonPlanSt.createdLessonPlan.teacherId;
+        var lessonId = this.state.tLessonPlanSt.createdLessonPlan.lessonPlanId;
+        var itemParams = {
+            TableName: constants.DBConstants.LESSON_PLANS,
+            Key: {
+                "teacherId": teacherId,
+                "lessonPlanId": String(lessonId)
+            }
+        };
+
+        TeacherLessonPlanActions.deleteLessonPlan(itemParams, this.props.history);
     },
 
     render: function() {
@@ -224,6 +251,10 @@ module.exports = React.createClass({
 
                         <div className='pageItem'>
                             <div className='pageHeader'>{'INTERACTIVE CONTENT'}</div>
+                        </div>
+
+                        <div id='pageFooter' className='pageItem'>
+                            <Button bsStyle="danger" onClick={this.deleteLesson}>{'DELETE LESSON'}</Button>
                         </div>
                     </Col>
                     <Col xs={8} md={3}>

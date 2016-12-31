@@ -97,7 +97,7 @@
 	exports.i(__webpack_require__(6), "");
 
 	// module
-	exports.push([module.id, "/* Global CSS Variables */\n/* Global css Styles */\nbody {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n  font-family: Century Gothic, sans-serif;\n  background-color: #f4f4f4;\n}\n\n/* generic tile */\n.tile {\n  background-color: white;\n  border-radius: 3.0px;\n  box-shadow: 0px 0px 10px #2b2b2b;\n}\n\n.tileLight {\n  background-color: white;\n  border-radius: 3.0px;\n  box-shadow: 0px 0px 10px lightgray;\n  padding: 15px;\n}\n\n/* company header */\n.headerBold {\n  color: white;\n  padding-right: 10px;\n}\n\n.headerLight {\n  font-weight: 100;\n  color: #b4e1c0;\n}\n\n/* view content based on nav pane width */\n#containerView.navFull {\n  margin-left: 210px;\n  padding: 15px;\n}\n\n#containerView.navSmall {\n  margin-left: 80px;\n  padding: 15px;\n}\n\n/* generic page item - every thing on the main view should\n * be wrapped in a page item component so that it inherits\n * the correct styling for the page.\n */\n.pageItem {\n  padding: 15px;\n}\n\n/* generic page header */\n.pageHeader {\n  color: #494e51;\n  font-size: 20px;\n  font-weight: bold;\n}\n\n.pageHeader.spaceBeneath {\n  margin-bottom: 10px;\n}\n\n/* framework css imports */\n/* Import specific css files */\n#loginView {\n  height: 100%;\n  width: 100%;\n  background-color: #494e51;\n}\n\n#loginView #companyHeader {\n  text-align: center;\n  padding-top: 100px;\n  font-size: 45px;\n}\n\n#loginView #loginForm {\n  margin-top: 30px;\n  width: 375px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li {\n  width: 50%;\n  border-width: 0px;\n  background-color: #d8d8d8;\n  text-align: center;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child {\n  border-top-left-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child {\n  border-top-right-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li a {\n  color: #494e51;\n  font-weight: bold;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child > a {\n  border-top-right-radius: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child > a {\n  border-top-left-radius: 0px;\n  margin-right: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li.active > a {\n  background-color: white;\n}\n\n#loginView #loginForm .loginFormContent, #loginView #loginForm .signupFormContent {\n  padding: 30px;\n}\n\n#loginView #loginForm .loginFormContent .btn-info, #loginView #loginForm .signupFormContent .btn-info {\n  width: 100%;\n  background-color: #55a4a4;\n  border-color: #55a4a4;\n}\n\n#loginView #loginForm .fa-lock {\n  padding-left: 3px;\n  padding-right: 3px;\n}\n\n#teacherCreateLessonPlansView .container {\n  width: 100% !important;\n}\n\n#teacherCreateLessonPlansView #column1 {\n  height: 100%;\n  overflow: scroll;\n}\n\n#teacherCreateLessonPlansView #lessonPlanHeader {\n  display: flex;\n  justify-content: space-between;\n  padding-bottom: 20px;\n  border-bottom: 1px solid lightgray;\n}\n\n#teacherCreateLessonPlansView .textInputWrapper {\n  width: 300px;\n}\n\n#teacherCreateLessonPlansView .control-label-titleRight {\n  width: 100%;\n  text-align: right;\n}\n\n#teacherCreateLessonPlansView #teacherLessonPlansDate_group .form-control {\n  border-top-left-radius: 3px;\n  border-bottom-left-radius: 3px;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent {\n  background-color: white;\n  height: 100%;\n  margin-right: -30px;\n  margin-top: -10px;\n  margin-bottom: -10px;\n  box-shadow: 0px 2px 3px lightgray;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent .rp__contentItem {\n  padding: 10px;\n  border-bottom: 1px solid lightgray;\n  width: 100%;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent .rp__contentItem .number {\n  color: #55a4a4;\n  font-weight: bold;\n  font-size: 18px;\n  margin-bottom: -5px;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent .rp__contentItem .title {\n  color: #494e51;\n  font-weight: bold;\n  text-align: right;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent .rp__contentItem .type {\n  color: #55a4a4;\n  text-align: right;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent .rp__contentItem .type .typeText {\n  margin-right: 5px;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent #rp__footer {\n  display: flex;\n  justify-content: space-between;\n  border-bottom: 1px solid lightgray;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent #rp__footer .btn {\n  width: 50%;\n  margin: 10px;\n}\n\n#teacherCreateLessonPlansView .headerContent {\n  color: #494e51;\n  font-weight: bold;\n  font-size: 16px;\n  text-align: center;\n  padding: 15px;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n#teacherCreateLessonPlansView .ctCell {\n  position: relative;\n}\n\n#teacherCreateLessonPlansView .selectedCheck {\n  color: #55a4a4;\n  font-size: 20px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  margin-right: -10px;\n  margin-top: -10px;\n}\n\n#teacherCreateLessonPlansView #videoRow {\n  display: flex;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile {\n  position: relative;\n  margin-right: 20px;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile .header {\n  display: flex;\n  justify-content: space-between;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile .title {\n  color: #494e51;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile .explicit {\n  color: #ff5151;\n  border: 1px solid #ff5151;\n  border-radius: 3px;\n  padding: 3px;\n  font-size: 10px;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile .embedVideo {\n  width: 200px;\n  height: 100px;\n  background-color: lightgray;\n  border-radius: 3px;\n  margin-top: 5px;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile.highlight {\n  opacity: 0.5;\n}\n\n#teacherLessonPlanView #titleHeader {\n  display: flex;\n  justify-content: space-between;\n}\n\n#teacherLessonPlanView .emptyView {\n  width: 400px;\n  margin-left: auto;\n  margin-right: auto;\n  text-align: center;\n  color: #BCBCBC;\n  margin-top: 50px;\n}\n\n#teacherLessonPlanView .emptyView .fa {\n  font-size: 50px;\n  margin-bottom: 15px;\n}\n\n/* override the default bootstrap styles with styles\n * that fit our theme instead\n */\n.btn-info {\n  color: white !important;\n  background-color: #55a4a4 !important;\n  border-color: #55a4a4 !important;\n}\n\n.btn-primary {\n  color: white !important;\n  background-color: #d8d8d8 !important;\n  border-color: #d8d8d8 !important;\n}\n\n.component__colorTable {\n  width: 100%;\n}\n\n.component__colorTable tbody > tr {\n  width: 100%;\n  background-color: white;\n  border: 1px solid lightgray;\n}\n\n.component__colorTable tbody > tr td {\n  padding: 15px;\n  display: flex;\n  justify-content: space-between;\n}\n\n.component__colorTable tbody > tr .colorTableTitle {\n  color: #494e51;\n  font-weight: bold;\n}\n\n.component__colorTable tbody > tr .colorTableDate {\n  color: #878787;\n}\n\n.component__colorTable tbody > tr .colorTableArrow {\n  color: #bababa;\n}\n\n/* override the bootstrap styles for a control label\n * and text input to match out theme\n */\n.control-label {\n  color: #55a4a4;\n  font-weight: 400 !important;\n}\n\n.form-control:focus {\n  border-color: #55a4a4 !important;\n  box-shadow: none !important;\n}\n\n#mast {\n  height: 60px;\n  width: 100%;\n  background-color: #3a3d3f;\n  padding: 12px;\n  box-shadow: 0px 0px 5px black;\n  display: inline-flex;\n  justify-content: space-between;\n}\n\n#mast .menuIcon {\n  color: #d8d8d8;\n  font-size: 26px;\n  padding-right: 15px;\n}\n\n#mast .mastHeader {\n  font-size: 25px;\n}\n\n#mast .mastUserName {\n  color: white;\n  font-size: 20px;\n}\n\n#mast .userNameIcon {\n  padding-left: 10px;\n  color: #d8d8d8;\n  font-size: 24px;\n}\n\n#navPane {\n  background-color: #494e51;\n  height: 100%;\n  position: absolute;\n  padding-top: 100px;\n  box-shadow: 0px 2px 3px black;\n}\n\n#navPane .navePaneItem {\n  padding-left: 20px;\n  padding-right: 20px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n  margin-bottom: 15px;\n}\n\n#navPane .navePaneItem a {\n  color: white;\n  text-decoration: none;\n}\n\n#navPane .navePaneItem.activeView {\n  border-left: 5px solid #b4e1c0;\n  background-color: #3a3d3f;\n}\n\n#navPane .navePaneItem.activeView a {\n  color: #b4e1c0;\n}\n\n#navPane .navePaneItem .navPaneIcon {\n  padding-right: 15px;\n}\n", ""]);
+	exports.push([module.id, "/* Global CSS Variables */\n/* Global css Styles */\nbody {\n  margin: 0;\n  padding: 0;\n  width: 100%;\n  height: 100%;\n  font-family: Century Gothic, sans-serif;\n  background-color: #f4f4f4;\n}\n\n/* generic tile */\n.tile {\n  background-color: white;\n  border-radius: 3.0px;\n  box-shadow: 0px 0px 10px #2b2b2b;\n}\n\n.tileLight {\n  background-color: white;\n  border-radius: 3.0px;\n  box-shadow: 0px 0px 10px lightgray;\n  padding: 15px;\n}\n\n/* company header */\n.headerBold {\n  color: white;\n  padding-right: 10px;\n}\n\n.headerLight {\n  font-weight: 100;\n  color: #b4e1c0;\n}\n\n/* view content based on nav pane width */\n#containerView.navFull {\n  margin-left: 210px;\n  padding: 15px;\n}\n\n#containerView.navSmall {\n  margin-left: 80px;\n  padding: 15px;\n}\n\n/* generic page item - every thing on the main view should\n * be wrapped in a page item component so that it inherits\n * the correct styling for the page.\n */\n.pageItem {\n  padding: 15px;\n}\n\n/* generic page header */\n.pageHeader {\n  color: #494e51;\n  font-size: 20px;\n  font-weight: bold;\n}\n\n.pageHeader.spaceBeneath {\n  margin-bottom: 10px;\n}\n\n/* framework css imports */\n/* Import specific css files */\n#loginView {\n  height: 100%;\n  width: 100%;\n  background-color: #494e51;\n}\n\n#loginView #companyHeader {\n  text-align: center;\n  padding-top: 100px;\n  font-size: 45px;\n}\n\n#loginView #loginForm {\n  margin-top: 30px;\n  width: 375px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li {\n  width: 50%;\n  border-width: 0px;\n  background-color: #d8d8d8;\n  text-align: center;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child {\n  border-top-left-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child {\n  border-top-right-radius: 3.0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li a {\n  color: #494e51;\n  font-weight: bold;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:first-child > a {\n  border-top-right-radius: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li:last-child > a {\n  border-top-left-radius: 0px;\n  margin-right: 0px;\n}\n\n#loginView #loginForm #loginTabs .nav-tabs > li.active > a {\n  background-color: white;\n}\n\n#loginView #loginForm .loginFormContent, #loginView #loginForm .signupFormContent {\n  padding: 30px;\n}\n\n#loginView #loginForm .loginFormContent .btn-info, #loginView #loginForm .signupFormContent .btn-info {\n  width: 100%;\n  background-color: #55a4a4;\n  border-color: #55a4a4;\n}\n\n#loginView #loginForm .fa-lock {\n  padding-left: 3px;\n  padding-right: 3px;\n}\n\n#teacherCreateLessonPlansView .container {\n  width: 100% !important;\n}\n\n#teacherCreateLessonPlansView #column1 {\n  height: 100%;\n  overflow: scroll;\n}\n\n#teacherCreateLessonPlansView #lessonPlanHeader {\n  display: flex;\n  justify-content: space-between;\n  padding-bottom: 20px;\n  border-bottom: 1px solid lightgray;\n}\n\n#teacherCreateLessonPlansView #pageFooter {\n  border-top: 1px solid lightgray;\n}\n\n#teacherCreateLessonPlansView #pageFooter .btn {\n  float: right;\n}\n\n#teacherCreateLessonPlansView .textInputWrapper {\n  width: 300px;\n}\n\n#teacherCreateLessonPlansView .control-label-titleRight {\n  width: 100%;\n  text-align: right;\n}\n\n#teacherCreateLessonPlansView #teacherLessonPlansDate_group .form-control {\n  border-top-left-radius: 3px;\n  border-bottom-left-radius: 3px;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent {\n  background-color: white;\n  height: 100%;\n  margin-right: -30px;\n  margin-top: -10px;\n  margin-bottom: -10px;\n  box-shadow: 0px 2px 3px lightgray;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent .rp__contentItem {\n  padding: 10px;\n  border-bottom: 1px solid lightgray;\n  width: 100%;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent .rp__contentItem .number {\n  color: #55a4a4;\n  font-weight: bold;\n  font-size: 18px;\n  margin-bottom: -5px;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent .rp__contentItem .title {\n  color: #494e51;\n  font-weight: bold;\n  text-align: right;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent .rp__contentItem .type {\n  color: #55a4a4;\n  text-align: right;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent .rp__contentItem .type .typeText {\n  margin-right: 5px;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent #rp__footer {\n  display: flex;\n  justify-content: space-between;\n  border-bottom: 1px solid lightgray;\n}\n\n#teacherCreateLessonPlansView #rightPanelContent #rp__footer .btn {\n  width: 50%;\n  margin: 10px;\n}\n\n#teacherCreateLessonPlansView .headerContent {\n  color: #494e51;\n  font-weight: bold;\n  font-size: 16px;\n  text-align: center;\n  padding: 15px;\n  border-bottom: 1px solid #d8d8d8;\n}\n\n#teacherCreateLessonPlansView .ctCell {\n  position: relative;\n}\n\n#teacherCreateLessonPlansView .selectedCheck {\n  color: #55a4a4;\n  font-size: 20px;\n  position: absolute;\n  top: 0;\n  right: 0;\n  margin-right: -10px;\n  margin-top: -10px;\n}\n\n#teacherCreateLessonPlansView #videoRow {\n  display: flex;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile {\n  position: relative;\n  margin-right: 20px;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile .header {\n  display: flex;\n  justify-content: space-between;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile .title {\n  color: #494e51;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile .explicit {\n  color: #ff5151;\n  border: 1px solid #ff5151;\n  border-radius: 3px;\n  padding: 3px;\n  font-size: 10px;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile .embedVideo {\n  width: 200px;\n  height: 100px;\n  background-color: lightgray;\n  border-radius: 3px;\n  margin-top: 5px;\n}\n\n#teacherCreateLessonPlansView #videoRow .videoTile.highlight {\n  opacity: 0.5;\n}\n\n#teacherLessonPlanView #titleHeader {\n  display: flex;\n  justify-content: space-between;\n}\n\n#teacherLessonPlanView .emptyView {\n  width: 400px;\n  margin-left: auto;\n  margin-right: auto;\n  text-align: center;\n  color: #BCBCBC;\n  margin-top: 50px;\n}\n\n#teacherLessonPlanView .emptyView .fa {\n  font-size: 50px;\n  margin-bottom: 15px;\n}\n\n/* override the default bootstrap styles with styles\n * that fit our theme instead\n */\n.btn-info {\n  color: white !important;\n  background-color: #55a4a4 !important;\n  border-color: #55a4a4 !important;\n}\n\n.btn-primary {\n  color: white !important;\n  background-color: #d8d8d8 !important;\n  border-color: #d8d8d8 !important;\n}\n\n.btn-danger {\n  color: white !important;\n  background-color: #ef4040 !important;\n  border-color: #ef4040 !important;\n}\n\n.component__colorTable {\n  width: 100%;\n}\n\n.component__colorTable tbody > tr {\n  width: 100%;\n  background-color: white;\n  border: 1px solid lightgray;\n}\n\n.component__colorTable tbody > tr td {\n  padding: 15px;\n  display: flex;\n  justify-content: space-between;\n}\n\n.component__colorTable tbody > tr .colorTableTitle {\n  color: #494e51;\n  font-weight: bold;\n}\n\n.component__colorTable tbody > tr .colorTableDate {\n  color: #878787;\n}\n\n.component__colorTable tbody > tr .colorTableArrow {\n  color: #bababa;\n}\n\n/* override the bootstrap styles for a control label\n * and text input to match out theme\n */\n.control-label {\n  color: #55a4a4;\n  font-weight: 400 !important;\n}\n\n.form-control:focus {\n  border-color: #55a4a4 !important;\n  box-shadow: none !important;\n}\n\n#mast {\n  height: 60px;\n  width: 100%;\n  background-color: #3a3d3f;\n  padding: 12px;\n  box-shadow: 0px 0px 5px black;\n  display: inline-flex;\n  justify-content: space-between;\n}\n\n#mast .menuIcon {\n  color: #d8d8d8;\n  font-size: 26px;\n  padding-right: 15px;\n}\n\n#mast .mastHeader {\n  font-size: 25px;\n}\n\n#mast .mastUserName {\n  color: white;\n  font-size: 20px;\n}\n\n#mast .userNameIcon {\n  padding-left: 10px;\n  color: #d8d8d8;\n  font-size: 24px;\n}\n\n#navPane {\n  background-color: #494e51;\n  height: 100%;\n  position: absolute;\n  padding-top: 100px;\n  box-shadow: 0px 2px 3px black;\n}\n\n#navPane .navePaneItem {\n  padding-left: 20px;\n  padding-right: 20px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  font-size: 18px;\n  margin-bottom: 15px;\n}\n\n#navPane .navePaneItem a {\n  color: white;\n  text-decoration: none;\n}\n\n#navPane .navePaneItem.activeView {\n  border-left: 5px solid #b4e1c0;\n  background-color: #3a3d3f;\n}\n\n#navPane .navePaneItem.activeView a {\n  color: #b4e1c0;\n}\n\n#navPane .navePaneItem .navPaneIcon {\n  padding-right: 15px;\n}\n", ""]);
 
 	// exports
 
@@ -59596,7 +59596,7 @@
 	            return {
 	                title: lessonPlan.title.toUpperCase(),
 	                date: new Date(lessonPlan.date).toLocaleDateString(),
-	                color: Colors.colorsArray[index],
+	                color: Colors.colorsArray[index % Colors.colorsArray.length],
 	                details: true,
 	                selectable: true
 	            };
@@ -59750,8 +59750,11 @@
 	        createdLessonPlan: {
 	            title: null,
 	            date: null,
-	            plan: []
-	        }
+	            plan: [],
+	            lessonPlanId: 0,
+	            teacherId: null
+	        },
+	        nextAvailableLessonPlanId: 0
 	    },
 	    getInitialState: function () {
 	        return this.state;
@@ -59759,42 +59762,33 @@
 	    /**
 	     * Loads teacher lesson plans from database
 	     */
-	    onLoadLessonPlans: function () {
-	        var docClient = new AWS.DynamoDB.DocumentClient();
-	        var teacherId = "Katie"; // we will set this as a variable once we have gmail authentication
-	        // query the lesson plans table for all lesson plans for this teacher
-	        var dbParams = {
-	            TableName: constants.DBConstants.LESSON_PLANS,
-	            KeyConditionExpression: "#teacherId = :teacherId",
-	            ExpressionAttributeNames: {
-	                "#teacherId": "teacherId"
-	            },
-	            ExpressionAttributeValues: {
-	                ":teacherId": teacherId
-	            }
-	        };
+	    onLoadLessonPlansCompleted: function (data) {
+	        var items = data.Items;
 
-	        docClient.query(dbParams, function (err, data) {
-	            if (err) {
-	                console.log("Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2));
-	            } else {
-	                var items = data.Items;
+	        this.state.allLessonPlans = _.map(items, function (item) {
+	            var date = item.lessonDate;
+	            var lessonName = item.lessonName || '';
+	            var plan = item.plan || [];
+	            var id = item.lessonPlanId || -1;
+	            var teacherId = item.teacherId || '';
 
-	                this.state.allLessonPlans = _.map(items, function (item) {
-	                    var date = item.lessonDate;
-	                    var lessonName = item.lessonName || '';
-	                    var plan = item.plan || [];
+	            return {
+	                title: lessonName,
+	                date: date,
+	                plan: plan,
+	                lessonPlanId: id,
+	                teacherId: teacherId
+	            };
+	        });
 
-	                    return {
-	                        title: lessonName,
-	                        date: date,
-	                        plan: plan
-	                    };
-	                });
+	        /* update the next available id for lesson plans. This assumes all
+	         * lesson plans run numerically starting at 1. If they don't then
+	         * this will be a problem. So we want the next available to be
+	         * one more than the current count.
+	         */
+	        this.state.nextAvailableLessonPlanId = items.length + 1;
 
-	                this.trigger(this.state);
-	            }
-	        }.bind(this));
+	        this.trigger(this.state);
 	    },
 
 	    /* callback handler to add a lesson plan
@@ -59842,31 +59836,16 @@
 	            plan: []
 	        };
 
+	        this.state.nextAvailableLessonPlanId = this.state.allLessonPlans.count + 1;
 	        this.trigger(this.state);
 	    },
 
 	    /* save the current lesson plan in the store */
-	    onSaveCreatedLessonPlan: function (name, date, history) {
+	    onSaveCreatedLessonPlanCompleted: function (data, history) {
+	        history.push('/teacherLessonPlans');
+	    },
 
-	        /* TODO - right now anything gets added
-	         * as a lesson plan even if you are editing
-	         * an existing plan and re saving it it gets
-	         * added as a new one. Need to check if the one
-	         * being edited already exists and update it instead
-	         * of creating a new one
-	         */
-
-	        this.state.createdLessonPlan.title = name;
-	        this.state.createdLessonPlan.date = date;
-
-	        var plan = _.cloneDeep(this.state.createdLessonPlan);
-	        this.state.allLessonPlans.push(plan);
-
-	        this.state.createdLessonPlan.title = null;
-	        this.state.createdLessonPlan.date = null;
-	        this.state.createdLessonPlan.plan = [];
-	        this.trigger(this.state);
-
+	    onDeleteLessonPlanCompleted: function (data, history) {
 	        history.push('/teacherLessonPlans');
 	    },
 
@@ -59880,7 +59859,9 @@
 	        for (var i = 0; i < this.state.allLessonPlans.length; i++) {
 	            var lp = this.state.allLessonPlans[i];
 	            if (name.toUpperCase() === lp.title.toUpperCase()) {
-	                this.state.createdLessonPlan = _.cloneDeep(lp);
+	                var plan = _.cloneDeep(lp);
+	                this.state.createdLessonPlan = plan;
+	                this.state.nextAvailableLessonPlanId = plan.lessonPlanId;
 	                history.push('/teacherLessonPlans/create');
 	            }
 	        }
@@ -59891,15 +59872,69 @@
 /* 644 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Reflux = __webpack_require__(357);
+	var Reflux = __webpack_require__(357),
+	    constants = __webpack_require__(645);
 
 	var TeacherLessonPlanActions = Reflux.createActions({
 	    addLessonPlanItem: {},
 	    clearCreatedLessonPlan: {},
 	    clearCreatedLessonPlanDeep: {},
+	    deleteLessonPlan: { asyncResult: true },
 	    loadLessonPlan: {},
-	    saveCreatedLessonPlan: {},
-	    loadLessonPlans: {}
+	    loadLessonPlans: { asyncResult: true },
+	    saveCreatedLessonPlan: { asyncResult: true }
+	});
+
+	/* Action to get all lesson plans */
+	TeacherLessonPlanActions.loadLessonPlans.listen(function () {
+	    var docClient = new AWS.DynamoDB.DocumentClient();
+	    var teacherId = "Katie"; // we will set this as a variable once we have gmail authentication
+	    // query the lesson plans table for all lesson plans for this teacher
+
+	    var dbParams = {
+	        TableName: constants.DBConstants.LESSON_PLANS,
+	        KeyConditionExpression: "#teacherId = :teacherId",
+	        ExpressionAttributeNames: {
+	            "#teacherId": "teacherId"
+	        },
+	        ExpressionAttributeValues: {
+	            ":teacherId": teacherId
+	        }
+	    };
+
+	    docClient.query(dbParams, function (err, data) {
+	        if (err) {
+	            console.log("Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2));
+	        } else {
+	            this.completed(data);
+	        }
+	    }.bind(this));
+	});
+
+	/* Action to save a lesson plan creation or edit */
+	TeacherLessonPlanActions.saveCreatedLessonPlan.listen(function (itemParams, history) {
+	    var docClient = new AWS.DynamoDB.DocumentClient();
+
+	    docClient.put(itemParams, function (err, data) {
+	        if (err) {
+	            console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+	        } else {
+	            this.completed(data, history);
+	        }
+	    }.bind(this));
+	});
+
+	/* Action to delete a lesson plan */
+	TeacherLessonPlanActions.deleteLessonPlan.listen(function (itemParams, history) {
+	    var docClient = new AWS.DynamoDB.DocumentClient();
+
+	    docClient.delete(itemParams, function (err, data) {
+	        if (err) {
+	            console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+	        } else {
+	            this.completed(data, history);
+	        }
+	    }.bind(this));
 	});
 
 	module.exports = TeacherLessonPlanActions;
@@ -77000,7 +77035,7 @@
 	    Colors = __webpack_require__(642),
 	    Conversions = __webpack_require__(648),
 	    ControlLabel = __webpack_require__(649);
-	FormControl = __webpack_require__(341), InputGroup = __webpack_require__(338), Grid = __webpack_require__(650), Row = __webpack_require__(651), Col = __webpack_require__(652), Button = __webpack_require__(333), FaIcon = __webpack_require__(345), DatePicker = __webpack_require__(653), LessonPlanContentStore = __webpack_require__(740), TeacherLessonPlanActions = __webpack_require__(644), TeacherLessonPlanStore = __webpack_require__(643);
+	FormControl = __webpack_require__(341), InputGroup = __webpack_require__(338), Grid = __webpack_require__(650), Row = __webpack_require__(651), Col = __webpack_require__(652), Button = __webpack_require__(333), FaIcon = __webpack_require__(345), constants = __webpack_require__(645), DatePicker = __webpack_require__(653), LessonPlanContentStore = __webpack_require__(740), TeacherLessonPlanActions = __webpack_require__(644), TeacherLessonPlanStore = __webpack_require__(643);
 
 	/* Main page content */
 	module.exports = React.createClass({
@@ -77109,7 +77144,20 @@
 	        } else if (this.state.dateValue === null) {
 	            alert('Please enter a Lesson Plan Date to save this plan');
 	        } else {
-	            TeacherLessonPlanActions.saveCreatedLessonPlan(this.state.lessonPlanName, this.state.dateValue, this.props.history);
+	            var plan = _.cloneDeep(this.state.tLessonPlanSt.createdLessonPlan);
+
+	            var itemParams = {
+	                TableName: constants.DBConstants.LESSON_PLANS,
+	                Item: {
+	                    teacherId: "Katie",
+	                    lessonPlanId: String(this.state.nextAvailableLessonPlanId),
+	                    lessonDate: this.state.dateValue,
+	                    lessonName: this.state.lessonPlanName,
+	                    plan: plan.plan
+	                }
+	            };
+
+	            TeacherLessonPlanActions.saveCreatedLessonPlan(itemParams, this.props.history);
 	        }
 	    },
 
@@ -77123,6 +77171,20 @@
 	        }
 
 	        return false;
+	    },
+
+	    deleteLesson: function () {
+	        var teacherId = this.state.tLessonPlanSt.createdLessonPlan.teacherId;
+	        var lessonId = this.state.tLessonPlanSt.createdLessonPlan.lessonPlanId;
+	        var itemParams = {
+	            TableName: constants.DBConstants.LESSON_PLANS,
+	            Key: {
+	                "teacherId": teacherId,
+	                "lessonPlanId": String(lessonId)
+	            }
+	        };
+
+	        TeacherLessonPlanActions.deleteLessonPlan(itemParams, this.props.history);
 	    },
 
 	    render: function () {
@@ -77250,6 +77312,15 @@
 	                                'div',
 	                                { className: 'pageHeader' },
 	                                'INTERACTIVE CONTENT'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { id: 'pageFooter', className: 'pageItem' },
+	                            React.createElement(
+	                                Button,
+	                                { bsStyle: 'danger', onClick: this.deleteLesson },
+	                                'DELETE LESSON'
 	                            )
 	                        )
 	                    ),

@@ -38,7 +38,7 @@ module.exports = React.createClass({
             return {
                 title: lessonPlan.title.toUpperCase(),
                 date: new Date(lessonPlan.date).toLocaleDateString(),
-                color: Colors.colorsArray[index],
+                color: Colors.colorsArray[index % Colors.colorsArray.length],
                 details: true,
                 selectable: true
             };
