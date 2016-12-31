@@ -50,7 +50,6 @@ module.exports = React.createClass({
                     </div>
                 </div>
                 <div className='pageItem'>
-                    <div className='pageItem'>
                     { tableRows.length > 0 ?
                         <ColorTable rows={tableRows} rowSelectedHandler={ this.rowSelected }/>
                     :
@@ -59,7 +58,6 @@ module.exports = React.createClass({
                            <div className='emptyViewText'>{'NO HOMEWORKS HAVE BEEN CREATED. PLEASE CREATE A HOMEWORK TO GET STARTED.'}</div>
                         </div>
                     }
-                </div>
                 </div>
             </div>
         );

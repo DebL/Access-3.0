@@ -52,7 +52,7 @@ module.exports = React.createClass({
                                         <FaIcon.Icon name='check-circle-o' />
                                     </td>
                                 :
-                                    <td></td>
+                                    <td className='emptyCell'></td>
                                 }
                             </tr>
                         );
