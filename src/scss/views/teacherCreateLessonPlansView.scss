@@ -103,15 +103,26 @@
     .selectedCheck {
         color: $accentDarkGreen;
         font-size: 20px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin-right: -10px;
-        margin-top: -10px;
+        position: relative;
+    
+        .fa-check-circle-o {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-right: -10px;
+            margin-top: -10px;
+        }
     }
 
     #videoRow {
         display: flex;
+
+        .selectedCheck {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
         .videoTile {
             position: relative;
             margin-right: 20px;

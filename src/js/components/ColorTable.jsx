@@ -51,7 +51,9 @@ module.exports = React.createClass({
                                     <td className='selectedCheck'>
                                         <FaIcon.Icon name='check-circle-o' />
                                     </td>
-                                : null }
+                                :
+                                    <td></td>
+                                }
                             </tr>
                         );
                     }, this)}

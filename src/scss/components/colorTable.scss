@@ -7,6 +7,10 @@
         border: 1px solid lightgray;
         cursor: pointer;
 
+        &:hover {
+            opacity: 0.5;
+        }
+
         td {
             padding: 15px;
         }
