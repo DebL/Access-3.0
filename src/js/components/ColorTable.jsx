@@ -1,5 +1,6 @@
 var React = require('react'),
     PropTypes = React.PropTypes,
+    _ = require('lodash'),
     FaIcon = require('react-fa');
 
 module.exports = React.createClass({
@@ -28,31 +29,29 @@ module.exports = React.createClass({
                     {this.props.rows.map(function(rowItem, idx) {
                         var rowSelected = rowItem.highlight;
                         var rowStyle = rowSelected ? { 'opacity': '0.5' } : {};
-                        var style = rowItem.color ? { 'borderLeft': '7px solid ' + rowItem.color } : {}; 
+                        var style = rowItem.color ? _.extend(rowStyle, { 'borderLeft': '7px solid ' + rowItem.color }) : {}; 
 
                         return (
-                            <tr key={idx} style={rowStyle} onClick={rowItem.selectable ?
+                            <tr key={idx} style={style} onClick={rowItem.selectable ?
                                     this.tableRowSelected.bind(this, idx, rowItem) : null}>
 
-                                <td className='ctCell' style={style}>
-                                    <div className='colorTableTitle'>{rowItem.title}</div>
+                                <td className='colorTableTitle'>{rowItem.title}</td>
                                     
-                                    {'date' in rowItem ? 
-                                        <div className='colorTableDate'>{rowItem.date}</div>
-                                    : null}
+                                { 'date' in rowItem ? 
+                                    <td className='colorTableDate'>{rowItem.date}</td>
+                                : null }
 
-                                    {rowItem.details ?
-                                        <div className='colorTableArrow'>
-                                            <FaIcon.Icon name={'chevron-right'}/>
-                                        </div>
-                                    : null}
+                                { rowItem.details ?
+                                    <td className='colorTableArrow'>
+                                        <FaIcon.Icon name={'chevron-right'}/>
+                                    </td>
+                                : null }
 
-                                    {rowSelected ?
-                                        <div className='selectedCheck'>
-                                            <FaIcon.Icon name='check-circle-o' />
-                                        </div>
-                                    : null}
-                                </td>
+                                { rowSelected ?
+                                    <td className='selectedCheck'>
+                                        <FaIcon.Icon name='check-circle-o' />
+                                    </td>
+                                : null }
                             </tr>
                         );
                     }, this)}

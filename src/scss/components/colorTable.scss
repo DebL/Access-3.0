@@ -5,11 +5,10 @@
         width: 100%;
         background-color: white;
         border: 1px solid lightgray;
+        cursor: pointer;
 
         td {
             padding: 15px;
-            display: flex;
-            justify-content: space-between;
         }
 
         .colorTableTitle {
@@ -23,6 +22,8 @@
 
         .colorTableArrow {
             color: #bababa;
+            display: flex;
+            justify-content: flex-end;
         }
     }
 }
