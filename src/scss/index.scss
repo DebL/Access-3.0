@@ -44,14 +44,21 @@ body {
 
 /* view content based on nav pane width */
 #containerView {
+    height: 100%;
+    overflow: scroll;
+
     &.navFull {
         margin-left: 210px;
-        padding: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
     }
 
     &.navSmall {
         margin-left: 80px;
-        padding: 15px;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 15px;
     }
 }
 

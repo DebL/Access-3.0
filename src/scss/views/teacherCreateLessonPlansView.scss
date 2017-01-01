@@ -44,7 +44,6 @@
         height: 100%;
         margin-right: -30px;
         margin-top: -10px;
-        margin-bottom: -10px;
         box-shadow: 0px 2px 3px lightgray;
 
         .rp__contentItem {
@@ -155,6 +154,29 @@
             &.highlight {
                 opacity: 0.5;
             }
+        }
+    }
+
+    #interactiveContentRow {
+        display: flex;
+
+        position: relative;
+        margin-right: 20px;
+
+        .icTile {
+            position: relative;
+            margin-right: 20px;
+            margin-top: 10px;
+
+            &.highlight {
+                opacity: 0.5;
+            }
+        }
+
+        .selectedCheck {
+            position: absolute;
+            top: 0;
+            right: 0;
         }
     }
 }

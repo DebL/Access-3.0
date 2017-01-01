@@ -251,6 +251,27 @@ module.exports = React.createClass({
 
                         <div className='pageItem'>
                             <div className='pageHeader'>{'INTERACTIVE CONTENT'}</div>
+                            <div id='interactiveContentRow'>
+                                {this.state.contentSt.interactiveContent.map(function(ic, i) {
+                                    var selected = this.isInLessonPlan(ic.id);
+                                    var highlightClass = selected ? 'highlight' : '';
+
+                                    return (
+                                        <div key={i} className={'icTile tileLight ' + highlightClass}
+                                            onClick={this.rowSelected.bind(this, ic)}>
+                                            <div className='header'>
+                                                <div className='title'>{ic.title}</div>
+                                            </div>
+
+                                            {selected ?
+                                                <div className='selectedCheck'>
+                                                    <FaIcon.Icon name='check-circle-o' />
+                                                </div>
+                                            : null}
+                                        </div>
+                                    );
+                                }, this)}
+                            </div>
                         </div>
 
                         {this.state.tLessonPlanSt.isEditingPlan ?
