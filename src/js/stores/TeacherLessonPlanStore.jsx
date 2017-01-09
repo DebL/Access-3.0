@@ -17,7 +17,8 @@ module.exports = Reflux.createStore({
             teacherId: null
         },
         nextAvailableLessonPlanId: 0,
-        isEditingPlan: false
+        isEditingPlan: false,
+        loading: true
     },
 
     getInitialState: function() {
@@ -51,6 +52,7 @@ module.exports = Reflux.createStore({
          * one more than the current count.
          */
         this.state.nextAvailableLessonPlanId = items.length + 1;
+        this.state.loading = false;
 
         this.trigger(this.state);
     },

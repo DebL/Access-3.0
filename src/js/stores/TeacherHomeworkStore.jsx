@@ -15,7 +15,8 @@ module.exports = Reflux.createStore({
             plan: [],
             homeworkId: 0,
             teacherId: null
-        }
+        },
+        loading: true
     },
     getInitialState: function() {
         return this.state;
@@ -25,7 +26,7 @@ module.exports = Reflux.createStore({
      */
     onLoadHomeworkCompleted: function(data) {
         var items = data.Items;
-
+        
         this.state.allHomework = _.map(items, function(item) {
             var dueDate = item.dueDate;
             var homeworkTitle = item.title || '';
@@ -39,6 +40,7 @@ module.exports = Reflux.createStore({
                 teacherId: teacherId
             };
         });
+        this.state.loading = false;
 
         this.trigger(this.state);
     }

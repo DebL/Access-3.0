@@ -50,13 +50,16 @@ module.exports = React.createClass({
                     </div>
                 </div>
                 <div className='pageItem'>
-                    { tableRows.length > 0 ?
-                        <ColorTable rows={tableRows} rowSelectedHandler={ this.rowSelected }/>
-                    :
+                    { tableRows.length > 0 && 
+                        <ColorTable rows={tableRows} rowSelectedHandler={ this.rowSelected }/> }
+                    { tableRows.length === 0 && !this.state.TeacherHomeworkStore.loading &&
                         <div className='emptyView'>
-                            <FaIcon.Icon name='pencil'/> 
-                           <div className='emptyViewText'>{'NO HOMEWORKS HAVE BEEN CREATED. PLEASE CREATE A HOMEWORK TO GET STARTED.'}</div>
+                            <FaIcon.Icon name='file'/> 
+                            <div className='emptyViewText'>{'NO HOMEWORK HAS BEEN CREATED. PLEASE CREATE A HOMEWORK TO GET STARTED.'}</div>
                         </div>
+                    }
+                    { this.state.TeacherHomeworkStore.loading &&
+                        <div className='spin'></div>
                     }
                 </div>
             </div>
